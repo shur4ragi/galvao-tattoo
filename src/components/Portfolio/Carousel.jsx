@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import InkSkeleton from '../ui/InkSkeleton.jsx';
 import styles from './Carousel.module.css';
 
-const SPEED = 38; // px por segundo
-const MAX_TILT = 36; // graus nas pontas
+const SPEED = 32; // px por segundo
+const MAX_TILT = 16; // graus nas pontas: curva suave, centro quase reto
 
 // Carrossel em parede côncava: a faixa corre sozinha e cada foto gira conforme a distância do
 // centro, como se estivesse numa curva virada para quem olha. Pausa no hover, aceita arrastar.
@@ -36,10 +36,11 @@ export default function Carousel({ items, onOpen }) {
       const vw = viewport.clientWidth;
       for (const el of track.children) {
         const center = el.offsetLeft + s.offset + el.offsetWidth / 2;
-        const d = Math.max(-1.3, Math.min(1.3, (center - vw / 2) / (vw / 2)));
+        const d = Math.max(-1.2, Math.min(1.2, (center - vw / 2) / (vw / 2)));
         const abs = Math.abs(d);
-        el.style.transform = `rotateY(${-d * MAX_TILT}deg) scale(${1 + abs * 0.14})`;
-        el.style.filter = `brightness(${1 - Math.min(abs, 1) * 0.55})`;
+        // Parede côncava: as pontas giram para dentro e crescem só um pouco, sem encostar.
+        el.style.transform = `rotateY(${-d * MAX_TILT}deg) scale(${1 + abs * abs * 0.06})`;
+        el.style.filter = `brightness(${1 - Math.min(abs, 1) * 0.35})`;
         el.style.zIndex = String(100 - Math.round(abs * 50));
       }
       raf = requestAnimationFrame(frame);

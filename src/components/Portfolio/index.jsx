@@ -17,15 +17,18 @@ export default function Portfolio() {
 
   return (
     <section id="portfolio" className={styles.section}>
-      <div className="container">
+      <div className={`container ${styles.head}`}>
         <div className={styles.bar} data-reveal>
           <Mark />
           <span>/ Portfólio</span>
           <span className={styles.index}>01</span>
         </div>
-        <h2 className={`wide ${styles.title}`} data-reveal>
-          <b>Trabalhos</b> recentes
-        </h2>
+        <div className={styles.row} data-reveal>
+          <h2 className={styles.title}>Trabalhos recentes</h2>
+          <p className={styles.sub}>
+            Fine Line e Black &amp; Grey, feitos no studio em Taubaté.
+          </p>
+        </div>
       </div>
 
       <div data-reveal style={{ '--delay': '0.1s' }}>
