@@ -25,9 +25,8 @@ export default function Portfolio() {
         <SectionHead
           index="02"
           label="Portfólio"
-          title="Trabalhos"
-          script="recentes."
-          aside="Toque em uma foto para ver em tela cheia."
+          title={<><b>Trabalhos</b> recentes.</>}
+          aside="Toque em uma foto para ver em tela cheia e em cor."
         />
 
         <div className={styles.filters} role="group" aria-label="Filtrar portfólio" data-reveal>
@@ -49,7 +48,7 @@ export default function Portfolio() {
           {items.map((item, i) => (
             <li key={item.src} className={item.tall ? styles.tall : ''} data-reveal style={{ '--delay': `${(i % 4) * 0.05}s` }}>
               <button type="button" className={styles.card} onClick={() => setOpenIndex(i)} aria-label={`Ampliar: ${item.alt}`}>
-                <img src={item.src} alt={item.alt} loading="lazy" width="464" height="464" />
+                <img className="bw" src={item.src} alt={item.alt} loading="lazy" width="464" height="464" />
                 <span className={styles.caption}>
                   <span>{String(i + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}</span>
                   <span>{item.alt}</span>

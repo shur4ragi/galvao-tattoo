@@ -11,18 +11,18 @@ export default function Stories() {
         <SectionHead
           index="03"
           label="Histórias"
-          title="Produzindo"
-          script="com propósito."
-          aside="Nomes, datas e homenagens. Cada uma dessas peças começou com alguém contando por que ela importava."
+          title={<>Produzindo <b>com propósito.</b></>}
+          aside="Nomes, datas e homenagens. Cada peça começou com alguém contando por que ela importava."
         />
 
         <div className={styles.grid}>
           {stories.map((story, i) => (
-            <article key={story.name} className={styles.card} data-reveal style={{ '--delay': `${i * 0.1}s` }}>
+            <article key={story.name} className={styles.card} data-reveal style={{ '--delay': `${i * 0.08}s` }}>
               <div className={styles.media}>
-                <img src={story.src} alt={`Tatuagem: ${story.name}`} loading="lazy" width="464" height="464" />
+                <img className="bw" src={story.src} alt={`Tatuagem: ${story.name}`} loading="lazy" width="464" height="464" />
+                <span className={styles.index}>{String(i + 1).padStart(2, '0')}</span>
               </div>
-              <h3 className="script">{story.name}</h3>
+              <h3 className="sign">{story.name}</h3>
               <p>{story.text}</p>
             </article>
           ))}

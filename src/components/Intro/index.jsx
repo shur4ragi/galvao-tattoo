@@ -65,7 +65,7 @@ export default function Intro() {
       </div>
       <div className={styles.line} />
       <p className={styles.name}>
-        Yuri Galvão <span className="script">tattoo</span>
+        Yuri Galvão <span className="sign">tattoo</span>
       </p>
     </div>
   );

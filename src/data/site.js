@@ -30,21 +30,39 @@ export const nav = [
   { href: '#contato', label: 'Contato' },
 ];
 
+export const announcement = 'Agenda aberta · orçamento pelo WhatsApp';
+
 export const hero = {
-  eyebrow: 'Fine Line · Black & Grey',
+  meta: ['Fine Line', 'Black & Grey', 'Taubaté — SP'],
   titleTop: 'Sua história',
   titleMid: 'já vale.',
-  titleScript: 'Só falta ser contada.',
+  signature: 'só falta ser contada',
   subtitle: 'Tatuagens Fine Line e Black & Grey em Taubaté, criadas exclusivamente pra você.',
-  portrait: img('yuri-trabalhando'),
-  frames: [
-    { src: img('lettering-laura'), alt: 'Lettering "Laura" na lateral da mão' },
-    { src: img('realismo-retrato'), alt: 'Retrato realista em preto e cinza no antebraço' },
-    { src: img('fineline-serpente-floral'), alt: 'Serpente com flores em traço fino na perna' },
-    { src: img('fineline-floral-555'), alt: 'Ramo floral em traço fino com o número 555' },
-    { src: img('fenix-cobertura-cicatriz'), alt: 'Fênix com sol e lua cobrindo cicatriz' },
+  // Fotos que passam sozinhas no quadro do hero.
+  slides: [
+    { src: img('yuri-trabalhando'), label: 'Yuri no studio' },
+    { src: img('lettering-laura'), label: 'Lettering · Laura' },
+    { src: img('realismo-retrato'), label: 'Black & Grey · Retrato' },
+    { src: img('fineline-serpente-floral'), label: 'Fine Line · Serpente' },
+    { src: img('fenix-cobertura-cicatriz'), label: 'Cobertura · Fênix' },
   ],
 };
+
+// Herói verde: manifesto em texto largo, partes em negrito marcadas com *asteriscos*.
+export const manifesto = {
+  label: 'Manifesto',
+  text: '*Yuri Galvão* tatua em Taubaté com *traço fino* e *preto e cinza*, e cria cada arte do zero para quem vai usar.',
+  sub: 'Nomes, datas, flores, retratos e cicatrizes que viram desenho.',
+  images: [img('black-grey-rosas'), img('fineline-costas-lettering'), img('black-grey-leao-floral')],
+};
+
+// Herói "cartaz": textos de homenagens já tatuadas. Usar só com autorização dos clientes.
+export const names = [
+  ['Laura'],
+  ['Matheus Henrique'],
+  ['Ísis', '06.12.2017'],
+  ['Ti amo', '555'],
+];
 
 export const specialties = [
   {

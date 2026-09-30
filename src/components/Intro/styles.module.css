@@ -5,8 +5,9 @@
   display: grid;
   place-content: center;
   justify-items: center;
-  gap: 28px;
-  background: var(--ink);
+  gap: 22px;
+  background: var(--lime);
+  color: var(--ink);
   transition: transform 0.9s var(--ease);
 }
 
@@ -16,16 +17,16 @@
 }
 
 .count {
-  font-size: clamp(22px, 3vw, 30px);
-  font-stretch: 70%;
-  font-weight: 600;
-  letter-spacing: 0.3em;
+  font-size: clamp(64px, 12vw, 160px);
+  font-stretch: 62%;
+  font-weight: 800;
+  line-height: 0.9;
   font-variant-numeric: tabular-nums;
 }
 
 .count span {
-  opacity: 0.18;
-  transition: opacity 0.3s;
+  opacity: 0.14;
+  transition: opacity 0.25s;
 }
 
 .count .on {
@@ -34,13 +35,14 @@
 
 .count em {
   font-style: normal;
-  color: var(--mute);
+  font-weight: 400;
+  opacity: 0.4;
 }
 
 .line {
-  width: min(320px, 70vw);
-  height: 1px;
-  background: var(--bone);
+  width: min(360px, 70vw);
+  height: 2px;
+  background: var(--ink);
   transform: scaleX(0);
   transform-origin: left;
   animation: draw 1.2s var(--ease) 0.1s forwards;
@@ -54,13 +56,13 @@
 
 .name {
   margin: 0;
-  color: var(--bone-2);
   font-size: 12px;
-  letter-spacing: 0.32em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
-.name :global(.script) {
-  font-size: 20px;
-  letter-spacing: 0;
+.name :global(.sign) {
+  font-size: 30px;
+  margin-left: 4px;
 }

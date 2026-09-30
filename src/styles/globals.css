@@ -1,21 +1,23 @@
 :root {
-  --ink: #0b0b0a;
-  --ink-2: #131312;
-  --ink-3: #1b1b19;
-  --bone: #ece8e1;
-  --bone-2: #b9b4ab;
-  --mute: #827d75;
-  --line: rgba(236, 232, 225, 0.14);
-  --line-strong: rgba(236, 232, 225, 0.32);
-  --gold: #c9b48f;
-  --wa: #25d366;
+  --paper: #ececec;
+  --paper-2: #e1e1e1;
+  --ink: #151515;
+  --ink-2: #1f1f1f;
+  --mute: #7d7d7d;
+  --line: rgba(21, 21, 21, 0.2);
+  --line-light: rgba(236, 236, 236, 0.22);
+
+  --lime: #b4f80f;
+  --blue: #1f34fc;
+  --pink: #ee70f8;
 
   --font: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --script: 'Cormorant Garamond', Georgia, serif;
+  --sign: 'Mrs Saint Delafield', 'Brush Script MT', cursive;
 
-  --gutter: clamp(16px, 4vw, 56px);
-  --max: 1320px;
-  --header-h: 72px;
+  --gutter: clamp(16px, 3vw, 40px);
+  --max: 1440px;
+  --header-h: 64px;
+  --bar-h: 34px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -27,40 +29,19 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: var(--header-h);
+  scroll-padding-top: calc(var(--header-h) + var(--bar-h));
   -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
-  background: var(--ink);
-  color: var(--bone);
+  background: var(--paper);
+  color: var(--ink);
   font-family: var(--font);
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-}
-
-/* Granulação de película por cima de tudo, sem capturar clique. */
-body::after {
-  content: '';
-  position: fixed;
-  inset: -50%;
-  z-index: 90;
-  pointer-events: none;
-  opacity: 0.07;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation: grain 1.2s steps(6) infinite;
-}
-
-@keyframes grain {
-  0% { transform: translate(0, 0); }
-  20% { transform: translate(-3%, 2%); }
-  40% { transform: translate(2%, -3%); }
-  60% { transform: translate(-2%, -1%); }
-  80% { transform: translate(3%, 3%); }
-  100% { transform: translate(0, 0); }
 }
 
 img {
@@ -81,12 +62,12 @@ button {
 }
 
 ::selection {
-  background: var(--bone);
+  background: var(--lime);
   color: var(--ink);
 }
 
 :focus-visible {
-  outline: 1px solid var(--gold);
+  outline: 2px solid var(--blue);
   outline-offset: 3px;
 }
 
@@ -97,12 +78,54 @@ button {
   padding: 0 var(--gutter);
 }
 
-.script {
-  font-family: var(--script);
-  font-style: italic;
+/* Tipografia: comprimida para cartazes, expandida para declarações. */
+.condensed {
+  font-stretch: 62%;
+  font-weight: 800;
+  line-height: 0.86;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+}
+
+.wide {
+  font-stretch: 125%;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.wide b,
+.wide strong {
+  font-weight: 800;
+}
+
+.sign {
+  font-family: var(--sign);
   font-weight: 400;
   text-transform: none;
   letter-spacing: 0;
+}
+
+.small-caps {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Grade de fotos: preto e branco, cor ao passar o mouse. */
+.bw {
+  filter: grayscale(1) contrast(1.08);
+  transition: filter 0.6s var(--ease), transform 0.9s var(--ease);
+}
+
+@media (hover: hover) {
+  .bw:hover,
+  :hover > .bw {
+    filter: none;
+  }
 }
 
 /* Botões */
@@ -110,19 +133,19 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  min-height: 52px;
-  padding: 0 26px;
-  border: 1px solid var(--bone);
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 22px;
+  border: 1px solid var(--ink);
   border-radius: 999px;
-  background: var(--bone);
-  color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.35s var(--ease), color 0.35s var(--ease), border-color 0.35s var(--ease);
+  transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
 }
 
 .btn svg {
@@ -132,25 +155,40 @@ button {
 }
 
 .btn:hover {
-  background: transparent;
-  color: var(--bone);
+  background: var(--lime);
+  border-color: var(--lime);
+  color: var(--ink);
 }
 
-.btn--ghost {
-  background: transparent;
-  color: var(--bone);
-  border-color: var(--line-strong);
+.btn--lime {
+  background: var(--lime);
+  border-color: var(--lime);
+  color: var(--ink);
 }
 
-.btn--ghost:hover {
-  border-color: var(--bone);
+.btn--lime:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--lime);
+}
+
+.btn--outline {
+  background: transparent;
+  color: inherit;
+  border-color: currentColor;
+}
+
+.btn--outline:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
 }
 
 /* Entrada ao rolar: [data-reveal] ganha .is-in quando aparece na tela. */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 1s var(--ease), transform 1s var(--ease);
+  transform: translateY(24px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
   transition-delay: var(--delay, 0s);
 }
 
@@ -162,10 +200,6 @@ button {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  body::after {
-    animation: none;
   }
 
   [data-reveal] {

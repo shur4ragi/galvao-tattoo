@@ -1,24 +1,21 @@
 import PropTypes from 'prop-types';
+import Mark from './Mark.jsx';
 import styles from './SectionHead.module.css';
 
-// Cabeçalho numerado das seções: "03 — Portfólio" em cima, título grande embaixo.
-export default function SectionHead({ index, label, title, script, aside }) {
+// Cabeçalho das seções: "✦ / Portfólio ........ 02" sobre uma linha fina e o título largo abaixo.
+// A cor vem do texto da seção, então funciona em fundo claro, escuro ou colorido.
+export default function SectionHead({ index, label, title, aside }) {
   return (
     <header className={styles.head}>
-      <p className={styles.label} data-reveal>
-        <span>{index}</span>
-        <i aria-hidden="true" />
-        {label}
-      </p>
+      <div className={styles.bar} data-reveal>
+        <Mark />
+        <span>/ {label}</span>
+        {index && <span className={styles.index}>{index}</span>}
+      </div>
       <div className={styles.row}>
-        <h2 className={styles.title} data-reveal style={{ '--delay': '0.08s' }}>
-          {title}
-          {script && <span className="script"> {script}</span>}
-        </h2>
+        <h2 className={`wide ${styles.title}`} data-reveal style={{ '--delay': '0.06s' }}>{title}</h2>
         {aside && (
-          <div className={styles.aside} data-reveal style={{ '--delay': '0.16s' }}>
-            {aside}
-          </div>
+          <p className={`small-caps ${styles.aside}`} data-reveal style={{ '--delay': '0.12s' }}>{aside}</p>
         )}
       </div>
     </header>
@@ -26,9 +23,8 @@ export default function SectionHead({ index, label, title, script, aside }) {
 }
 
 SectionHead.propTypes = {
-  index: PropTypes.string.isRequired,
+  index: PropTypes.string,
   label: PropTypes.string.isRequired,
   title: PropTypes.node.isRequired,
-  script: PropTypes.string,
   aside: PropTypes.node,
 };

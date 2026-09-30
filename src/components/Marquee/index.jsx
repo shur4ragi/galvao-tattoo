@@ -1,14 +1,16 @@
+import Mark from '../ui/Mark.jsx';
 import styles from './styles.module.css';
 
 const WORDS = ['Fine Line', 'Black & Grey', 'Lettering', 'Floral', 'Realismo', 'Cobertura de cicatriz', 'Homenagens'];
 
+// Faixa limão que corre entre o hero e as especialidades.
 export default function Marquee() {
   const row = (hidden) => (
     <div className={styles.row} aria-hidden={hidden || undefined}>
       {WORDS.map((word) => (
         <span key={word}>
           {word}
-          <i aria-hidden="true">✦</i>
+          <Mark />
         </span>
       ))}
     </div>

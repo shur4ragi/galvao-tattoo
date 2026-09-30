@@ -4,7 +4,9 @@ import Header from './components/Header/index.jsx';
 import Hero from './components/Hero/index.jsx';
 import Marquee from './components/Marquee/index.jsx';
 import Specialties from './components/Specialties/index.jsx';
+import Manifesto from './components/Manifesto/index.jsx';
 import Portfolio from './components/Portfolio/index.jsx';
+import NamesPoster from './components/NamesPoster/index.jsx';
 import Stories from './components/Stories/index.jsx';
 import Process from './components/Process/index.jsx';
 import About from './components/About/index.jsx';
@@ -15,6 +17,8 @@ import Contact from './components/Contact/index.jsx';
 import Footer from './components/Footer/index.jsx';
 import WhatsAppFloat from './components/WhatsAppFloat/index.jsx';
 
+// Heróis em cores alternadas: claro (topo) → limão (manifesto) → preto (cartaz de nomes)
+// → azul (como funciona) → limão (contato e rodapé).
 export default function App() {
   useReveal();
 
@@ -26,7 +30,9 @@ export default function App() {
         <Hero />
         <Marquee />
         <Specialties />
+        <Manifesto />
         <Portfolio />
+        <NamesPoster />
         <Stories />
         <Process />
         <About />

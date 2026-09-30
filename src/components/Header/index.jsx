@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { contact, messages, nav } from '../../data/site.js';
+import { announcement, contact, messages, nav } from '../../data/site.js';
 import { lockScroll } from '../../utils/scrollLock.js';
 import { whatsappUrl } from '../../utils/whatsapp.js';
+import Mark from '../ui/Mark.jsx';
 import styles from './styles.module.css';
 
 const clockFormat = new Intl.DateTimeFormat('pt-BR', {
@@ -20,17 +21,9 @@ function useClock() {
 }
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const clock = useClock();
   const budgetHref = whatsappUrl(contact.whatsapp, messages.budget);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   useEffect(() => {
     if (!open) return undefined;
@@ -49,10 +42,16 @@ export default function Header() {
   const close = () => setOpen(false);
 
   return (
-    <header className={`${styles.header} ${scrolled || open ? styles.solid : ''}`}>
+    <header className={styles.header}>
+      <a className={styles.announce} href={budgetHref} target="_blank" rel="noopener noreferrer">
+        <Mark />
+        <span>{announcement}</span>
+        <span aria-hidden="true">→</span>
+      </a>
+
       <div className={styles.bar}>
         <a href="#topo" className={styles.logo} onClick={close}>
-          Yuri Galvão <span className="script">tattoo</span>
+          Galvão<span className="sign">tattoo</span>
         </a>
 
         <nav className={styles.nav} aria-label="Seções">

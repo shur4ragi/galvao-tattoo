@@ -9,7 +9,7 @@ export default function Testimonials() {
   return (
     <section id="depoimentos" className={styles.section}>
       <div className="container">
-        <SectionHead index="—" label="Depoimentos" title="Quem já" script="contou a sua." />
+        <SectionHead label="Depoimentos" title={<>Quem já <b>contou a sua.</b></>} />
         <div className={styles.grid}>
           {testimonials.map((item, i) => (
             <figure key={item.name} className={styles.card} data-reveal style={{ '--delay': `${i * 0.08}s` }}>

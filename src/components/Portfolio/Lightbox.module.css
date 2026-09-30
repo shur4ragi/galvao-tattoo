@@ -4,8 +4,9 @@
   z-index: 120;
   display: grid;
   grid-template-rows: auto 1fr;
-  background: #070707;
-  animation: fade 0.35s var(--ease);
+  background: var(--ink);
+  color: var(--paper);
+  animation: fade 0.3s var(--ease);
 }
 
 @keyframes fade {
@@ -18,24 +19,27 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: var(--header-h);
+  height: 64px;
   padding: 0 var(--gutter);
-  color: var(--bone-2);
+  border-bottom: 1px solid var(--line-light);
   font-size: 12px;
-  letter-spacing: 0.22em;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
+  text-transform: uppercase;
 }
 
 .close {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  min-height: 44px;
-  padding: 0 4px;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 14px;
   border: 0;
-  background: none;
+  border-radius: 999px;
+  background: var(--lime);
+  color: var(--ink);
   font-size: 12px;
-  letter-spacing: 0.22em;
+  font-weight: 700;
   text-transform: uppercase;
   cursor: pointer;
 }
@@ -45,19 +49,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 14px;
   min-height: 0;
   margin: 0;
-  padding: 0 var(--gutter) 32px;
+  padding: 24px var(--gutter) 32px;
 }
 
 /* As fotos atuais são pequenas: o limite de tamanho evita ampliar e borrar demais. */
 .figure img {
   width: auto;
   max-width: min(100%, 620px);
-  max-height: calc(100dvh - var(--header-h) - 90px);
+  max-height: calc(100dvh - 64px - 110px);
   object-fit: contain;
-  animation: zoom 0.5s var(--ease);
+  animation: zoom 0.45s var(--ease);
 }
 
 @keyframes zoom {
@@ -68,9 +72,10 @@
 }
 
 .figure figcaption {
-  color: var(--bone-2);
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 500;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .nav {
@@ -81,11 +86,11 @@
   width: 52px;
   height: 52px;
   margin-top: -26px;
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line-light);
   border-radius: 50%;
-  background: rgba(11, 11, 10, 0.6);
+  background: transparent;
   cursor: pointer;
-  transition: background 0.3s, color 0.3s;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
 }
 
 .nav svg {
@@ -94,7 +99,8 @@
 }
 
 .nav:hover {
-  background: var(--bone);
+  background: var(--lime);
+  border-color: var(--lime);
   color: var(--ink);
 }
 
