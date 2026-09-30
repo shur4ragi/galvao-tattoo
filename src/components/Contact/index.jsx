@@ -2,6 +2,7 @@ import { contact, messages } from '../../data/site.js';
 import { whatsappUrl } from '../../utils/whatsapp.js';
 import { FacebookIcon, InstagramIcon, WhatsAppIcon } from '../ui/icons.jsx';
 import Mark from '../ui/Mark.jsx';
+import InkSkeleton from '../ui/InkSkeleton.jsx';
 import PixelEdge from '../ui/PixelEdge.jsx';
 import styles from './styles.module.css';
 
@@ -80,6 +81,7 @@ export default function Contact() {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
+              <InkSkeleton variant="machine" label="Carregando mapa" />
             </div>
           </div>
         </div>

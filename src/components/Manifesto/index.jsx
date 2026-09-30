@@ -1,5 +1,6 @@
 import { manifesto } from '../../data/site.js';
 import Mark from '../ui/Mark.jsx';
+import InkSkeleton from '../ui/InkSkeleton.jsx';
 import PixelEdge from '../ui/PixelEdge.jsx';
 import { rich } from '../ui/rich.jsx';
 import styles from './styles.module.css';
@@ -26,6 +27,7 @@ export default function Manifesto() {
         {manifesto.images.map((src, i) => (
           <div key={src} className={styles.photo} data-reveal style={{ '--delay': `${i * 0.08}s` }}>
             <img className="bw" src={src} alt="" loading="lazy" width="464" height="464" />
+            <InkSkeleton />
           </div>
         ))}
       </div>

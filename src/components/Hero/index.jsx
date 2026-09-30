@@ -3,6 +3,7 @@ import { contact, hero, messages } from '../../data/site.js';
 import { whatsappUrl } from '../../utils/whatsapp.js';
 import { ArrowIcon, WhatsAppIcon } from '../ui/icons.jsx';
 import Mark from '../ui/Mark.jsx';
+import InkSkeleton from '../ui/InkSkeleton.jsx';
 import styles from './styles.module.css';
 
 const SLIDE_MS = 3800;
@@ -36,6 +37,7 @@ function Slideshow() {
             loading={i === 0 ? undefined : 'lazy'}
           />
         ))}
+        <InkSkeleton variant="machine" label="Preparando a máquina" />
         <span className={styles.sticker}>
           <Mark /> Arte exclusiva
         </span>

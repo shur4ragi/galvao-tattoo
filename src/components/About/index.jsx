@@ -1,5 +1,6 @@
 import { about } from '../../data/site.js';
 import SectionHead from '../ui/SectionHead.jsx';
+import InkSkeleton from '../ui/InkSkeleton.jsx';
 import styles from './styles.module.css';
 
 export default function About() {
@@ -10,7 +11,10 @@ export default function About() {
 
         <div className={styles.layout}>
           <figure className={styles.photo} data-reveal>
-            <img src={about.photo} alt="Yuri Galvão tatuando no studio" loading="lazy" width="464" height="464" />
+            <div className={styles.frame}>
+              <img src={about.photo} alt="Yuri Galvão tatuando no studio" loading="lazy" width="464" height="464" />
+              <InkSkeleton variant="machine" label="Preparando a máquina" />
+            </div>
             <figcaption>
               <span>Studio privado</span>
               <span>Centro · Taubaté</span>

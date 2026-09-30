@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { filters, portfolio } from '../../data/site.js';
 import SectionHead from '../ui/SectionHead.jsx';
+import InkSkeleton from '../ui/InkSkeleton.jsx';
 import Lightbox from './Lightbox.jsx';
 import styles from './styles.module.css';
 
@@ -49,6 +50,7 @@ export default function Portfolio() {
             <li key={item.src} className={item.tall ? styles.tall : ''} data-reveal style={{ '--delay': `${(i % 4) * 0.05}s` }}>
               <button type="button" className={styles.card} onClick={() => setOpenIndex(i)} aria-label={`Ampliar: ${item.alt}`}>
                 <img className="bw" src={item.src} alt={item.alt} loading="lazy" width="464" height="464" />
+                <InkSkeleton />
                 <span className={styles.caption}>
                   <span>{String(i + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}</span>
                   <span>{item.alt}</span>

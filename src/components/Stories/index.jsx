@@ -1,5 +1,6 @@
 import { stories } from '../../data/site.js';
 import SectionHead from '../ui/SectionHead.jsx';
+import InkSkeleton from '../ui/InkSkeleton.jsx';
 import styles from './styles.module.css';
 
 export default function Stories() {
@@ -20,6 +21,7 @@ export default function Stories() {
             <article key={story.name} className={styles.card} data-reveal style={{ '--delay': `${i * 0.08}s` }}>
               <div className={styles.media}>
                 <img className="bw" src={story.src} alt={`Tatuagem: ${story.name}`} loading="lazy" width="464" height="464" />
+                <InkSkeleton />
                 <span className={styles.index}>{String(i + 1).padStart(2, '0')}</span>
               </div>
               <h3 className="sign">{story.name}</h3>

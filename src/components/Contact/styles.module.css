@@ -127,6 +127,7 @@
 }
 
 .map {
+  position: relative;
   min-height: 240px;
   border: 1px solid var(--ink);
   overflow: hidden;

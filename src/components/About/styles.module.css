@@ -12,6 +12,10 @@
   margin: 0;
 }
 
+.frame {
+  position: relative;
+}
+
 .photo img {
   width: 100%;
   aspect-ratio: 4 / 5;

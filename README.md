@@ -21,6 +21,9 @@ npm run lint
 - **Fotos** ficam em `public/images/`. Para trocar pela versão em alta, salve com o mesmo nome de arquivo.
 - **Depoimentos**: a lista começa vazia e a seção fica escondida até receber itens `{ quote, name }`.
 - **Facebook**: aparece no contato quando `contact.facebook` tiver o link.
+- **Abertura**: `src/components/Intro`. Máquina vibrando, gotas e poça que crescem com o carregamento real (página e fontes; mínimo 1,8 s, máximo 6 s). No 100% a tinta cobre a tela e a cortina sobe. Não aparece para quem prefere menos movimento.
+- **Skeletons**: `src/components/ui/InkSkeleton.jsx`, com pote de tinta derramando (fotos) ou maquininha pingando (carrossel, foto do Yuri e mapa). Para ver sem rede lenta, abra a página com `?skeleton` no fim do endereço.
+- **Ilustrações**: `src/components/ui/TattooArt.jsx`, em SVG próprio com traço preto e fundo branco.
 
 ## Seções
 

@@ -197,6 +197,12 @@ button {
   transform: none;
 }
 
+/* Durante a abertura nada aparece por trás dela: as entradas esperam a cortina subir. */
+html.intro-running [data-reveal].is-in {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

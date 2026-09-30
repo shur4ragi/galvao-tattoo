@@ -39,6 +39,7 @@
 }
 
 .photo {
+  position: relative;
   overflow: hidden;
   aspect-ratio: 1;
 }

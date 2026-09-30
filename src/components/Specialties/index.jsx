@@ -1,5 +1,6 @@
 import { specialties } from '../../data/site.js';
 import SectionHead from '../ui/SectionHead.jsx';
+import InkSkeleton from '../ui/InkSkeleton.jsx';
 import styles from './styles.module.css';
 
 export default function Specialties() {
@@ -19,6 +20,7 @@ export default function Specialties() {
               <div className={styles.media}>
                 <img className="bw" src={item.images[0]} alt="" loading="lazy" width="464" height="464" />
                 <img className={styles.alt} src={item.images[1]} alt="" loading="lazy" width="464" height="464" />
+                <InkSkeleton />
               </div>
               <div className={styles.info}>
                 <span className={styles.num}>{String(i + 1).padStart(2, '0')}</span>
