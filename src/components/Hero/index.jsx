@@ -5,35 +5,38 @@ import InkSkeleton from '../ui/InkSkeleton.jsx';
 import FeatureIcon from './FeatureIcon.jsx';
 import styles from './styles.module.css';
 
-// Tempo de cada passo depois que a abertura de carregamento termina.
-const STEP2_AT = 1700;
-const STEP3_AT = 3500;
+// Linha do tempo única (ms depois que a cortina da abertura começa a subir). As etapas se
+// sobrepõem nas animações de CSS; aqui só marcamos quando a moldura aparece e quando acabou.
+const FRAME_AT = 1000;
+const DONE_AT = 4300;
 
 // Hero automático em três passos, no formato do wireframe:
 // 1. página em branco com aspas; 2. painel preto desce e a moldura lateral aparece;
 // 3. apresentação do Yuri (foto, texto e números) — é o "Sobre" do site.
-// Rolar antes do fim pula direto para o passo 3.
+// Tudo anima só transform, opacity e clip-path, sem refazer o layout a cada quadro.
+// Rolar ou teclar antes do fim pula direto para o estado final.
 export default function Hero() {
   const ref = useRef(null);
-  const [step, setStep] = useState(() =>
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 3 : 1,
+  const [phase, setPhase] = useState(() =>
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'done' : 'idle',
   );
 
-  // Linha do tempo: começa quando a cortina da abertura sobe (ou já, se não houve abertura).
   useEffect(() => {
-    if (step === 3) return undefined;
+    if (phase === 'done') return undefined;
     const timers = [];
-    const skip = () => setStep(3);
+    const root = document.documentElement;
+    const finish = () => setPhase('done');
     const start = () => {
-      timers.push(setTimeout(() => setStep(2), STEP2_AT));
-      timers.push(setTimeout(() => setStep(3), STEP3_AT));
+      setPhase('play');
+      timers.push(setTimeout(() => root.classList.add('frame-on'), FRAME_AT));
+      timers.push(setTimeout(finish, DONE_AT));
       // Só depois da abertura: rolar ou teclar pula direto para a apresentação.
-      window.addEventListener('wheel', skip, { passive: true, once: true });
-      window.addEventListener('touchmove', skip, { passive: true, once: true });
-      window.addEventListener('keydown', skip, { once: true });
+      window.addEventListener('wheel', finish, { passive: true, once: true });
+      window.addEventListener('touchmove', finish, { passive: true, once: true });
+      window.addEventListener('keydown', finish, { once: true });
     };
 
-    if (document.documentElement.classList.contains('intro-running')) {
+    if (root.classList.contains('intro-running')) {
       window.addEventListener('galvao:intro-done', start, { once: true });
     } else {
       start();
@@ -42,18 +45,18 @@ export default function Hero() {
     return () => {
       timers.forEach(clearTimeout);
       window.removeEventListener('galvao:intro-done', start);
-      window.removeEventListener('wheel', skip);
-      window.removeEventListener('touchmove', skip);
-      window.removeEventListener('keydown', skip);
+      window.removeEventListener('wheel', finish);
+      window.removeEventListener('touchmove', finish);
+      window.removeEventListener('keydown', finish);
     };
-    // A linha do tempo roda uma vez; o passo 3 encerra tudo.
+    // A linha do tempo roda uma vez; o estado final encerra tudo.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [step === 3]);
+  }, [phase === 'done']);
 
-  // Moldura lateral a partir do passo 2; cabeçalho escondido enquanto o hero ocupa a tela.
+  // Moldura lateral no fim; cabeçalho escondido enquanto o hero ocupa a tela.
   useEffect(() => {
     const root = document.documentElement;
-    if (step >= 2) root.classList.add('frame-on');
+    if (phase === 'done') root.classList.add('frame-on');
 
     const onScroll = () => {
       const bottom = ref.current?.getBoundingClientRect().bottom ?? 0;
@@ -62,14 +65,15 @@ export default function Hero() {
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, [step]);
+  }, [phase]);
 
   useEffect(() => () => document.documentElement.classList.remove('seq-active'), []);
 
   return (
-    <section id="topo" ref={ref} className={styles.hero} data-step={step} aria-label="Sobre o Yuri Galvão">
+    <section id="topo" ref={ref} className={styles.hero} data-phase={phase} aria-label="Sobre o Yuri Galvão">
       {/* Painel preto: desce no passo 2 e vira a apresentação no passo 3 */}
       <div className={styles.panel}>
+        <div className={styles.panelBg} aria-hidden="true" />
         <div className={styles.welcome}>
           <p className={styles.eyebrow}>{sequence.eyebrow}</p>
           <h1 className={styles.title}>

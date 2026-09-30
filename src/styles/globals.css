@@ -1,16 +1,3 @@
-/* Passos do hero: registradas para a transição entre valores ser suave. */
-@property --a {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 0;
-}
-
-@property --b {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 0;
-}
-
 :root {
   --paper: #fff;
   --paper-2: #efefef;
