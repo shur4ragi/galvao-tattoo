@@ -9,15 +9,17 @@ const WAIT_MS = 1600;
 const KINDS = {
   whatsapp: { title: 'Abrindo o WhatsApp', text: 'Sua mensagem já vai pronta, é só enviar.' },
   maps: { title: 'Abrindo o Google Maps', text: 'Rua Duque de Caxias, 112 — Centro, Taubaté.' },
+  instagram: { title: 'Abrindo o Instagram', text: 'O perfil do Yuri no @galvaotattoo_.' },
 };
 
 function kindOf(href = '') {
   if (href.includes('wa.me') || href.includes('api.whatsapp.com')) return 'whatsapp';
   if (href.includes('google.com/maps') || href.includes('maps.app.goo.gl')) return 'maps';
+  if (href.includes('instagram.com') || href.includes('instagr.am')) return 'instagram';
   return null;
 }
 
-// Tela de carregamento antes de sair do site para o WhatsApp ou o Google Maps.
+// Tela de carregamento antes de sair do site para o WhatsApp, o Instagram ou o Google Maps.
 // Intercepta os cliques em qualquer link desses destinos na página, sem precisar mexer em cada
 // botão. Ctrl/Cmd + clique continua abrindo direto em nova aba.
 export default function ExternalLoader() {
@@ -74,7 +76,9 @@ export default function ExternalLoader() {
   return (
     <div className={styles.overlay} role="alertdialog" aria-modal="true" aria-labelledby="saida-titulo" aria-describedby="saida-texto">
       <div className={styles.card}>
-        {pending.kind === 'whatsapp' ? <WhatsAppArt /> : <MapsArt />}
+        {pending.kind === 'whatsapp' && <WhatsAppArt />}
+        {pending.kind === 'maps' && <MapsArt />}
+        {pending.kind === 'instagram' && <InstagramArt />}
         <p id="saida-titulo" className={styles.title}>{copy.title}</p>
         <p id="saida-texto" className={styles.text}>{copy.text}</p>
         <span className={styles.bar} aria-hidden="true">
@@ -129,6 +133,25 @@ function MapsArt() {
         <path className={styles.fall} d={DROP} />
       </g>
       <ellipse className={styles.ripple} cx="110" cy="124" rx="16" ry="4" />
+    </svg>
+  );
+}
+
+// Moldura do Instagram se desenhando, com a máquina pingando tinta no canto.
+function InstagramArt() {
+  return (
+    <svg className={styles.art} viewBox="0 0 220 150" aria-hidden="true" focusable="false">
+      <rect className={styles.draw} x="52" y="18" width="116" height="116" rx="32" pathLength="1" />
+      <circle className={styles.draw} cx="110" cy="76" r="30" pathLength="1" style={{ animationDelay: '0.22s' }} />
+      <circle className={styles.dot} cx="148" cy="42" r="5" />
+      <g transform="translate(168 -32) scale(0.42) rotate(40 60 110)">
+        <g className={styles.buzz}>
+          <MachineShape />
+        </g>
+      </g>
+      <g transform="translate(158 44)">
+        <path className={styles.drip} d={DROP} />
+      </g>
     </svg>
   );
 }

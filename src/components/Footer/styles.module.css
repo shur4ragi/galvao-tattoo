@@ -2,7 +2,10 @@
   padding: 8px 0 calc(92px + env(safe-area-inset-bottom));
   background: var(--ink);
   color: #fff;
-  overflow: hidden;
+}
+
+.inner {
+  container-type: inline-size;
 }
 
 .cols {
@@ -52,11 +55,19 @@
 }
 
 .word {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   margin: clamp(32px, 5vw, 64px) 0 0;
-  font-size: clamp(120px, 31vw, 480px);
-  line-height: 0.78;
-  padding-top: 0.1em;
+  padding: 0.14em 0 0.18em;
+  overflow: visible;
+  /* GALVÃO em Archivo 800 condensed mede ~2.84em. Dividir a caixa por 2.92
+     deixa a palavra no limite da moldura, com folga para o O e o til. */
+  font-size: min(calc(100cqw / 2.92), 480px);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
   text-align: center;
+  white-space: nowrap;
   user-select: none;
   background: linear-gradient(180deg, #fff 0%, #5a5a5a 100%);
   -webkit-background-clip: text;
