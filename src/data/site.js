@@ -23,23 +23,23 @@ export const messages = {
 };
 
 export const nav = [
+  { href: '#topo', label: 'Sobre' },
   { href: '#portfolio', label: 'Portfólio' },
   { href: '#historias', label: 'Histórias' },
   { href: '#processo', label: 'Como funciona' },
-  { href: '#sobre', label: 'Sobre' },
   { href: '#contato', label: 'Contato' },
 ];
 
 export const announcement = 'Agenda aberta · orçamento pelo WhatsApp';
 
-// Primeira tela animada pela rolagem (3 passos).
+// Hero automático em 3 passos; o último apresenta o tatuador.
 export const sequence = {
   step1: ['Sua história', 'ainda guardada'],
-  hint: 'Role para começar',
+  hint: 'Role para conhecer',
   step2: 'O início de um novo traço…',
   eyebrow: 'Seja bem-vindo ao studio.',
-  title: ['Sua história,', 'agora na pele.'],
-  subtitle: 'Tatuagens Fine Line e Black & Grey em Taubaté, criadas exclusivamente pra você.',
+  title: ['Prazer,', 'Yuri Galvão.'],
+  subtitle: 'Tatuador de Fine Line e Black & Grey em Taubaté. Cada arte é criada exclusivamente pra você.',
 };
 
 // Citação discreta entre o portfólio e as histórias.
@@ -49,10 +49,10 @@ export const quote = {
 };
 
 export const specialties = [
-  { icon: 'needle', title: 'Fine Line & Lettering', text: 'Nomes, datas e frases em traço fino.' },
-  { icon: 'shade', title: 'Black & Grey', text: 'Realismo e retratos em preto e cinza.' },
-  { icon: 'flower', title: 'Floral', text: 'Rosas e ramos que seguem o corpo.' },
-  { icon: 'cover', title: 'Cobertura de cicatriz', text: 'A marca ganha um novo desenho.' },
+  { icon: 'needle', title: 'Fine Line & Lettering' },
+  { icon: 'shade', title: 'Black & Grey' },
+  { icon: 'flower', title: 'Floral' },
+  { icon: 'cover', title: 'Cobertura de cicatriz' },
 ];
 
 export const filters = [

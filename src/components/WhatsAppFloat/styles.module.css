@@ -1,6 +1,6 @@
 .float {
   position: fixed;
-  right: max(16px, env(safe-area-inset-right));
+  right: calc(var(--frame) + 14px);
   bottom: max(16px, env(safe-area-inset-bottom));
   z-index: 60;
   display: inline-flex;

@@ -86,6 +86,8 @@ export default function Intro() {
     if (phase === 'flood') {
       const id = setTimeout(() => {
         document.documentElement.classList.remove('intro-running');
+        // Avisa o hero para começar a sequência junto com a cortina subindo.
+        window.dispatchEvent(new Event('galvao:intro-done'));
         setPhase('leave');
       }, FLOOD_MS);
       return () => clearTimeout(id);

@@ -25,7 +25,9 @@ npm run lint
 
 ## Seções
 
-Abertura de carregamento (preto e branco) → **primeira tela animada pela rolagem** em 3 passos: aspas e "role para começar", depois o painel preto descendo com barras de progresso, depois boas-vindas com as especialidades → faixa preta → 01 Portfólio em **carrossel curvo** (arrastar ou ampliar), com "Ver todos os trabalhos" abrindo um **modal com filtros e skeletons** → citação → 02 Histórias → 03 Como funciona (preto, números vazados) → 04 Sobre → Mentorias (rosa) → 05 Dúvidas → 06 Contato e rodapé (preto).
+Abertura de carregamento (preto e branco) → **hero automático** em 3 passos, que começa quando a cortina sobe (rolar ou teclar pula direto para o fim): aspas e "Sua história ainda guardada", depois o painel preto descendo com a moldura lateral, e por fim **a apresentação do Yuri, que faz o papel do Sobre** (foto, texto, números e especialidades) → faixa preta → 01 Portfólio em carrossel curvo, com "Ver todos os trabalhos" abrindo um modal com filtros e skeletons → citação → 02 Histórias → 03 Como funciona → Mentorias (rosa) → 04 Dúvidas → 05 Contato e rodapé.
+
+**Moldura**: colunas brancas fixas nas laterais (`src/components/FrameRails`, largura em `--frame`), com linha fina na borda do conteúdo. A barra da esquerda mostra o progresso de rolagem da página. Ela aparece a partir do passo 2 do hero.
 
 ## Pendências com o Yuri
 

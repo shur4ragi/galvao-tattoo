@@ -20,7 +20,7 @@ export default function Contact() {
       <div className={styles.band}>
         <div className="container">
           <p className={styles.kicker} data-reveal>
-            <Mark /> / Contato <span>06</span>
+            <Mark /> / Contato <span>05</span>
           </p>
 
           <h2 className={`condensed ${styles.title}`} data-reveal>

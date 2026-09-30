@@ -1,3 +1,16 @@
+/* Passos do hero: registradas para a transição entre valores ser suave. */
+@property --a {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --b {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
 :root {
   --paper: #fff;
   --paper-2: #efefef;
@@ -13,6 +26,8 @@
   --sign: 'Mrs Saint Delafield', 'Brush Script MT', cursive;
 
   --gutter: clamp(16px, 3vw, 40px);
+  /* Colunas brancas fixas nas laterais (moldura do site). */
+  --frame: clamp(14px, 4.4vw, 72px);
   --max: 1440px;
   --header-h: 64px;
   --bar-h: 34px;
@@ -33,6 +48,7 @@ html {
 
 body {
   margin: 0;
+  padding: 0 var(--frame);
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font);
