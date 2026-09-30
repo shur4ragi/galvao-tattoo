@@ -40,7 +40,7 @@
 
 .copy :global(.sign) {
   margin: 0 0 28px;
-  color: var(--blue);
+  color: var(--ink);
   font-size: clamp(56px, 7vw, 104px);
   line-height: 1;
   transform: rotate(-4deg);

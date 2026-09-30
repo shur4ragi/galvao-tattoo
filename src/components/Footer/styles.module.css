@@ -1,6 +1,7 @@
 .footer {
   padding: 8px 0 calc(92px + env(safe-area-inset-bottom));
-  background: var(--lime);
+  background: var(--ink);
+  color: #fff;
   overflow: hidden;
 }
 
@@ -9,7 +10,7 @@
   grid-template-columns: repeat(2, minmax(0, 1fr)) minmax(0, 2fr);
   gap: 24px 12px;
   padding-top: 32px;
-  border-top: 1px solid var(--ink);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 .cols h3 {
@@ -18,7 +19,7 @@
   gap: 8px;
   margin: 0 0 12px;
   padding-bottom: 8px;
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
@@ -38,7 +39,7 @@
 }
 
 .cols li a:hover {
-  color: var(--blue);
+  opacity: 0.6;
 }
 
 .place {
@@ -57,6 +58,10 @@
   padding-top: 0.1em;
   text-align: center;
   user-select: none;
+  background: linear-gradient(180deg, #fff 0%, #5a5a5a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .row {
@@ -66,14 +71,14 @@
   gap: 10px 20px;
   margin-top: 16px;
   padding-top: 12px;
-  border-top: 1px solid var(--ink);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
 }
 
 .row a:hover {
-  color: var(--blue);
+  opacity: 0.6;
 }
 
 @media (max-width: 600px) {

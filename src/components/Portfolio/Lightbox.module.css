@@ -34,13 +34,13 @@
   gap: 8px;
   min-height: 36px;
   padding: 0 14px;
-  border: 0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 999px;
-  background: var(--lime);
-  color: var(--ink);
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
+  background: transparent;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.35s var(--ease);
   cursor: pointer;
 }
 
@@ -98,10 +98,10 @@
   height: 20px;
 }
 
-.nav:hover {
-  background: var(--lime);
-  border-color: var(--lime);
-  color: var(--ink);
+.nav:hover,
+.close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 .prev {

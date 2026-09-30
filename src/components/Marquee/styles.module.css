@@ -1,9 +1,8 @@
 .marquee {
   overflow: hidden;
   padding: 12px 0;
-  background: var(--lime);
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
+  background: var(--ink);
+  color: #fff;
 }
 
 .track {

@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 
 const WORDS = ['Fine Line', 'Black & Grey', 'Lettering', 'Floral', 'Realismo', 'Cobertura de cicatriz', 'Homenagens'];
 
-// Faixa limão que corre entre o hero e as especialidades.
+// Faixa preta que corre logo depois da primeira tela.
 export default function Marquee() {
   const row = (hidden) => (
     <div className={styles.row} aria-hidden={hidden || undefined}>

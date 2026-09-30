@@ -23,8 +23,8 @@ export const messages = {
 };
 
 export const nav = [
-  { href: '#especialidades', label: 'Especialidades' },
   { href: '#portfolio', label: 'Portfólio' },
+  { href: '#historias', label: 'Histórias' },
   { href: '#processo', label: 'Como funciona' },
   { href: '#sobre', label: 'Sobre' },
   { href: '#contato', label: 'Contato' },
@@ -32,59 +32,27 @@ export const nav = [
 
 export const announcement = 'Agenda aberta · orçamento pelo WhatsApp';
 
-export const hero = {
-  meta: ['Fine Line', 'Black & Grey', 'Taubaté — SP'],
-  titleTop: 'Sua história',
-  titleMid: 'já vale.',
-  signature: 'só falta ser contada',
+// Primeira tela animada pela rolagem (3 passos).
+export const sequence = {
+  step1: ['Sua história', 'ainda guardada'],
+  hint: 'Role para começar',
+  step2: 'O início de um novo traço…',
+  eyebrow: 'Seja bem-vindo ao studio.',
+  title: ['Sua história,', 'agora na pele.'],
   subtitle: 'Tatuagens Fine Line e Black & Grey em Taubaté, criadas exclusivamente pra você.',
-  // Fotos que passam sozinhas no quadro do hero.
-  slides: [
-    { src: img('yuri-trabalhando'), label: 'Yuri no studio' },
-    { src: img('lettering-laura'), label: 'Lettering · Laura' },
-    { src: img('realismo-retrato'), label: 'Black & Grey · Retrato' },
-    { src: img('fineline-serpente-floral'), label: 'Fine Line · Serpente' },
-    { src: img('fenix-cobertura-cicatriz'), label: 'Cobertura · Fênix' },
-  ],
 };
 
-// Herói verde: manifesto em texto largo, partes em negrito marcadas com *asteriscos*.
-export const manifesto = {
-  label: 'Manifesto',
-  text: '*Yuri Galvão* tatua em Taubaté com *traço fino* e *preto e cinza*, e cria cada arte do zero para quem vai usar.',
-  sub: 'Nomes, datas, flores, retratos e cicatrizes que viram desenho.',
-  images: [img('black-grey-rosas'), img('fineline-costas-lettering'), img('black-grey-leao-floral')],
+// Citação discreta entre o portfólio e as histórias.
+export const quote = {
+  text: 'Cada arte é desenhada do zero, para uma pessoa e uma história.',
+  author: 'Yuri Galvão',
 };
-
-// Herói "cartaz": textos de homenagens já tatuadas. Usar só com autorização dos clientes.
-export const names = [
-  ['Laura'],
-  ['Matheus Henrique'],
-  ['Ísis', '06.12.2017'],
-  ['Ti amo', '555'],
-];
 
 export const specialties = [
-  {
-    title: 'Fine Line & Lettering',
-    text: 'Traço fino, nomes, datas e frases escritos com a delicadeza que a homenagem pede.',
-    images: [img('lettering-laura'), img('lettering-homenagem-matheus')],
-  },
-  {
-    title: 'Black & Grey · Realismo',
-    text: 'Retratos e cenas em preto e cinza, com sombra construída camada por camada.',
-    images: [img('realismo-retrato'), img('black-grey-religioso')],
-  },
-  {
-    title: 'Floral',
-    text: 'Rosas, ramos e flores que acompanham o desenho do corpo.',
-    images: [img('black-grey-rosas'), img('fineline-floral-555')],
-  },
-  {
-    title: 'Cobertura de cicatriz',
-    text: 'A marca continua fazendo parte da história. Só ganha um novo desenho por cima.',
-    images: [img('fenix-cobertura-cicatriz'), img('lettering-cobertura-cicatriz')],
-  },
+  { icon: 'needle', title: 'Fine Line & Lettering', text: 'Nomes, datas e frases em traço fino.' },
+  { icon: 'shade', title: 'Black & Grey', text: 'Realismo e retratos em preto e cinza.' },
+  { icon: 'flower', title: 'Floral', text: 'Rosas e ramos que seguem o corpo.' },
+  { icon: 'cover', title: 'Cobertura de cicatriz', text: 'A marca ganha um novo desenho.' },
 ];
 
 export const filters = [

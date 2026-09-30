@@ -6,7 +6,7 @@ export default function Faq() {
   return (
     <section id="duvidas" className={styles.section}>
       <div className={`container ${styles.layout}`}>
-        <SectionHead index="06" label="Dúvidas" title={<><b>Antes</b> de marcar.</>} />
+        <SectionHead index="05" label="Dúvidas" title={<><b>Antes</b> de marcar.</>} />
 
         <div className={styles.list}>
           {faq.map((item, i) => (

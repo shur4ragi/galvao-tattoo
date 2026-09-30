@@ -12,25 +12,31 @@ function isLoaded(media) {
 
 // Skeleton de carregamento com referência de estúdio. Fica por cima da primeira <img> ou <iframe>
 // do mesmo container (que precisa de position: relative) e some quando ela termina de carregar.
-export default function InkSkeleton({ variant = 'bottle', label = 'Carregando tinta' }) {
+// minMs mantém o skeleton um tempo mínimo na tela (ex.: ao abrir o modal do portfólio).
+export default function InkSkeleton({ variant = 'bottle', label = 'Carregando tinta', minMs = 0 }) {
   const ref = useRef(null);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     if (FORCED) return undefined;
+    const start = performance.now();
+    let timer = 0;
+    const done = () => {
+      timer = setTimeout(() => setLoaded(true), Math.max(0, minMs - (performance.now() - start)));
+    };
     const media = ref.current?.parentElement?.querySelector('img, iframe');
     if (!media || isLoaded(media)) {
-      setLoaded(true);
-      return undefined;
+      done();
+      return () => clearTimeout(timer);
     }
-    const done = () => setLoaded(true);
     media.addEventListener('load', done);
     media.addEventListener('error', done);
     return () => {
+      clearTimeout(timer);
       media.removeEventListener('load', done);
       media.removeEventListener('error', done);
     };
-  }, []);
+  }, [minMs]);
 
   return (
     <span ref={ref} className={`${styles.skeleton} ${loaded ? styles.done : ''}`} aria-hidden="true">
@@ -75,4 +81,5 @@ export default function InkSkeleton({ variant = 'bottle', label = 'Carregando ti
 InkSkeleton.propTypes = {
   variant: PropTypes.oneOf(['bottle', 'machine']),
   label: PropTypes.string,
+  minMs: PropTypes.number,
 };

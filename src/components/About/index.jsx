@@ -7,7 +7,7 @@ export default function About() {
   return (
     <section id="sobre" className={styles.section}>
       <div className="container">
-        <SectionHead index="05" label="Sobre" title={<><b>Yuri Galvão,</b> tatuador em Taubaté.</>} />
+        <SectionHead index="04" label="Sobre" title={<><b>Yuri Galvão,</b> tatuador em Taubaté.</>} />
 
         <div className={styles.layout}>
           <figure className={styles.photo} data-reveal>

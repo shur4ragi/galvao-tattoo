@@ -1,68 +1,57 @@
-import { useMemo, useState } from 'react';
-import { filters, portfolio } from '../../data/site.js';
-import SectionHead from '../ui/SectionHead.jsx';
-import InkSkeleton from '../ui/InkSkeleton.jsx';
+import { useCallback, useState } from 'react';
+import { portfolio } from '../../data/site.js';
+import { ArrowIcon } from '../ui/icons.jsx';
+import Mark from '../ui/Mark.jsx';
+import Carousel from './Carousel.jsx';
+import GalleryModal from './GalleryModal.jsx';
 import Lightbox from './Lightbox.jsx';
 import styles from './styles.module.css';
 
+// Trabalhos: carrossel curvo na página e todos os trabalhos em um modal.
 export default function Portfolio() {
-  const [filter, setFilter] = useState('all');
-  const [openIndex, setOpenIndex] = useState(null);
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [photo, setPhoto] = useState(null); // { items, index }
 
-  const items = useMemo(
-    () => (filter === 'all' ? portfolio : portfolio.filter((item) => item.tags.includes(filter))),
-    [filter],
-  );
-
-  const counts = useMemo(() => {
-    const result = { all: portfolio.length };
-    portfolio.forEach((item) => item.tags.forEach((tag) => { result[tag] = (result[tag] || 0) + 1; }));
-    return result;
-  }, []);
+  const openPhoto = useCallback((items, index) => setPhoto({ items, index }), []);
+  const closeGallery = useCallback(() => setGalleryOpen(false), []);
 
   return (
     <section id="portfolio" className={styles.section}>
       <div className="container">
-        <SectionHead
-          index="02"
-          label="Portfólio"
-          title={<><b>Trabalhos</b> recentes.</>}
-          aside="Toque em uma foto para ver em tela cheia e em cor."
-        />
-
-        <div className={styles.filters} role="group" aria-label="Filtrar portfólio" data-reveal>
-          {filters.map((f) => (
-            <button
-              key={f.id}
-              type="button"
-              className={filter === f.id ? styles.active : ''}
-              aria-pressed={filter === f.id}
-              onClick={() => setFilter(f.id)}
-            >
-              {f.label}
-              <sup>{counts[f.id] || 0}</sup>
-            </button>
-          ))}
+        <div className={styles.bar} data-reveal>
+          <Mark />
+          <span>/ Portfólio</span>
+          <span className={styles.index}>01</span>
         </div>
-
-        <ul className={styles.grid} key={filter}>
-          {items.map((item, i) => (
-            <li key={item.src} className={item.tall ? styles.tall : ''} data-reveal style={{ '--delay': `${(i % 4) * 0.05}s` }}>
-              <button type="button" className={styles.card} onClick={() => setOpenIndex(i)} aria-label={`Ampliar: ${item.alt}`}>
-                <img className="bw" src={item.src} alt={item.alt} loading="lazy" width="464" height="464" />
-                <InkSkeleton />
-                <span className={styles.caption}>
-                  <span>{String(i + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}</span>
-                  <span>{item.alt}</span>
-                </span>
-              </button>
-            </li>
-          ))}
-        </ul>
+        <h2 className={`wide ${styles.title}`} data-reveal>
+          <b>Trabalhos</b> recentes
+        </h2>
       </div>
 
-      {openIndex !== null && (
-        <Lightbox items={items} index={openIndex} onChange={setOpenIndex} onClose={() => setOpenIndex(null)} />
+      <div data-reveal style={{ '--delay': '0.1s' }}>
+        <Carousel items={portfolio} onOpen={(i) => openPhoto(portfolio, i)} />
+      </div>
+
+      <div className={`container ${styles.footer}`} data-reveal>
+        <p>
+          {portfolio.length} trabalhos · <span>arraste ou toque para ampliar</span>
+        </p>
+        <button type="button" className="btn btn--light" onClick={() => setGalleryOpen(true)}>
+          Ver todos os trabalhos
+          <ArrowIcon />
+        </button>
+      </div>
+
+      {galleryOpen && (
+        <GalleryModal onClose={closeGallery} onOpenPhoto={openPhoto} blockEscape={photo !== null} />
+      )}
+      {photo && (
+        <Lightbox
+          items={photo.items}
+          index={photo.index}
+          onChange={(index) => setPhoto((p) => ({ ...p, index }))}
+          onClose={() => setPhoto(null)}
+        />
       )}
     </section>
   );

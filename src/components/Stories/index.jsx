@@ -10,7 +10,7 @@ export default function Stories() {
     <section id="historias" className={styles.section}>
       <div className="container">
         <SectionHead
-          index="03"
+          index="02"
           label="Histórias"
           title={<>Produzindo <b>com propósito.</b></>}
           aside="Nomes, datas e homenagens. Cada peça começou com alguém contando por que ela importava."

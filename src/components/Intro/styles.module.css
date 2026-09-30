@@ -6,7 +6,7 @@
   grid-template-rows: auto minmax(0, 1fr) auto;
   justify-items: center;
   padding: 20px var(--gutter) 28px;
-  background: var(--lime);
+  background: #fff;
   color: var(--ink);
   transition: transform 0.85s var(--ease);
 }
@@ -36,7 +36,7 @@
 
 .brand :global(.sign) {
   margin-left: 2px;
-  color: var(--blue);
+  color: var(--ink);
   font-size: 28px;
   font-stretch: 100%;
   font-weight: 400;

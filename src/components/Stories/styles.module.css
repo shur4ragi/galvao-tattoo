@@ -31,17 +31,18 @@
   top: 10px;
   left: 10px;
   padding: 2px 6px;
-  background: var(--lime);
+  background: var(--ink);
+  color: #fff;
   font-size: 11px;
   font-weight: 700;
 }
 
-/* Nome escrito à mão em azul, subindo por cima da foto como lettering. */
+/* Nome escrito à mão logo abaixo da foto, como assinatura. */
 .card h3 {
   position: relative;
   z-index: 1;
-  margin: -0.62em 0 6px 8px;
-  color: var(--blue);
+  margin: 10px 0 4px 2px;
+  color: var(--ink);
   font-size: clamp(40px, 4.2vw, 64px);
   line-height: 1;
   white-space: nowrap;

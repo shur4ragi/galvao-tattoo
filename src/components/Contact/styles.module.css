@@ -1,6 +1,6 @@
 .section {
   position: relative;
-  background: var(--ink);
+  background: #fff;
 }
 
 .edge {
@@ -9,7 +9,8 @@
 
 .band {
   padding: clamp(24px, 4vw, 48px) 0 clamp(56px, 7vw, 96px);
-  background: var(--lime);
+  background: var(--ink);
+  color: #fff;
 }
 
 .kicker {
@@ -18,7 +19,7 @@
   gap: 8px;
   margin: 0 0 clamp(20px, 3vw, 36px);
   padding-bottom: 10px;
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
@@ -38,7 +39,7 @@
 .title :global(.sign) {
   display: inline-block;
   margin-left: 0.08em;
-  color: var(--blue);
+  color: #fff;
   font-size: 0.42em;
   font-weight: 400;
   vertical-align: 0.3em;
@@ -57,6 +58,7 @@
 .lead {
   max-width: 440px;
   margin: 0;
+  color: rgba(255, 255, 255, 0.72);
   font-size: 17px;
   line-height: 1.45;
 }
@@ -70,7 +72,7 @@
 
 .col {
   padding-top: 10px;
-  border-top: 1px solid var(--ink);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 .col h3 {
@@ -83,13 +85,12 @@
 .col p {
   margin: 0;
   font-size: 16px;
-  font-weight: 600;
-  line-height: 1.4;
-  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 1.45;
 }
 
 .col p a {
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .link {
@@ -101,7 +102,7 @@
 }
 
 .link:hover {
-  color: var(--blue);
+  opacity: 0.7;
 }
 
 .social {
@@ -117,8 +118,7 @@
   align-items: center;
   gap: 8px;
   font-size: 16px;
-  font-weight: 600;
-  text-transform: uppercase;
+  font-weight: 500;
 }
 
 .social svg {
@@ -129,7 +129,7 @@
 .map {
   position: relative;
   min-height: 240px;
-  border: 1px solid var(--ink);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   overflow: hidden;
 }
 

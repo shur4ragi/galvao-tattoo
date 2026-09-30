@@ -23,7 +23,7 @@
 }
 
 .card figcaption {
-  color: var(--blue);
+  color: var(--mute);
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;

@@ -15,12 +15,12 @@ export default function Contact() {
   return (
     <section id="contato" className={styles.section}>
       <div className={styles.edge}>
-        <PixelEdge color="var(--lime)" />
+        <PixelEdge color="var(--ink)" />
       </div>
       <div className={styles.band}>
         <div className="container">
           <p className={styles.kicker} data-reveal>
-            <Mark /> / Contato <span>07</span>
+            <Mark /> / Contato <span>06</span>
           </p>
 
           <h2 className={`condensed ${styles.title}`} data-reveal>
@@ -33,7 +33,7 @@ export default function Contact() {
             <p className={styles.lead}>
               Mande a ideia, uma referência e o local do corpo. O Yuri responde com a proposta de arte e o orçamento.
             </p>
-            <a className="btn" href={budgetHref} target="_blank" rel="noopener noreferrer">
+            <a className="btn btn--light" href={budgetHref} target="_blank" rel="noopener noreferrer">
               <WhatsAppIcon />
               Pedir orçamento no WhatsApp
             </a>
