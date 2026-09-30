@@ -61,6 +61,14 @@ export const specialties = [
   { icon: 'cover', title: 'Cobertura de cicatriz' },
 ];
 
+// Seções do modal de todos os trabalhos, na ordem em que aparecem.
+export const gallerySections = [
+  { id: 'fineline', title: 'Fine Line', text: 'Traço fino, delicado e preciso.' },
+  { id: 'blackgrey', title: 'Black & Grey', text: 'Realismo e sombra em preto e cinza.' },
+  { id: 'lettering', title: 'Lettering', text: 'Nomes, datas e frases escritos à mão.' },
+  { id: 'cover', title: 'Coberturas', text: 'Cicatrizes que ganham um novo desenho.' },
+];
+
 export const filters = [
   { id: 'all', label: 'Todos' },
   { id: 'fineline', label: 'Fine Line' },
@@ -69,7 +77,8 @@ export const filters = [
   { id: 'cover', label: 'Coberturas' },
 ];
 
-// tall: ocupa duas linhas da grade. Categorias de cobertura: confirmar com o Yuri.
+// A primeira tag é a seção principal da foto no modal de todos os trabalhos.
+// Categorias de cobertura: confirmar com o Yuri.
 export const portfolio = [
   { src: img('realismo-retrato'), alt: 'Retrato realista feminino no antebraço', tags: ['blackgrey'], tall: true },
   { src: img('lettering-laura'), alt: 'Lettering "Laura" na mão', tags: ['lettering', 'fineline'] },
@@ -77,7 +86,7 @@ export const portfolio = [
   { src: img('fineline-serpente-floral'), alt: 'Serpente com flores na perna', tags: ['fineline', 'blackgrey'], tall: true },
   { src: img('black-grey-rosas'), alt: 'Rosas em preto e cinza', tags: ['blackgrey'] },
   { src: img('fineline-costas-lettering'), alt: 'Frase na coluna com lírio em traço fino', tags: ['fineline', 'lettering'] },
-  { src: img('lettering-cobertura-cicatriz'), alt: 'Lettering cursivo sobre cicatriz', tags: ['lettering', 'cover'] },
+  { src: img('lettering-cobertura-cicatriz'), alt: 'Lettering cursivo sobre cicatriz', tags: ['cover', 'lettering'] },
   { src: img('black-grey-leao-floral'), alt: 'Leão com flores no braço', tags: ['blackgrey'] },
   { src: img('fineline-andorinha'), alt: 'Andorinha em traço fino no antebraço', tags: ['fineline'] },
   { src: img('lettering-homenagem-matheus'), alt: 'Nome "Matheus Henrique" com coração no antebraço', tags: ['lettering', 'fineline'] },
