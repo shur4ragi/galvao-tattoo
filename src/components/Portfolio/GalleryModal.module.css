@@ -16,7 +16,7 @@
   flex-direction: column;
   overflow: hidden;
   border-radius: 24px;
-  background: #fff;
+  background: var(--paper);
   color: var(--ink);
   box-shadow: 0 40px 120px rgba(0, 0, 0, 0.35);
   animation: rise 0.6s var(--ease);
@@ -60,7 +60,7 @@
   gap: 0;
   padding: 18px clamp(18px, 3vw, 40px) 16px;
   background: var(--ink);
-  color: #fff;
+  color: var(--paper);
 }
 
 .headTop {
@@ -83,7 +83,7 @@
 .closeBtn {
   min-height: 38px;
   font-size: 13px;
-  --drip: #fff;
+  --drip: var(--paper);
   --drip-text: var(--ink);
 }
 
@@ -122,7 +122,7 @@
 }
 
 .tSign {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(238, 242, 244, 0.7);
   font-size: 1.05em;
   line-height: 0.8;
 }
@@ -134,7 +134,7 @@
 
 .lead {
   margin: 0 0 4px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(238, 242, 244, 0.6);
   font-size: 14px;
 }
 
@@ -156,13 +156,13 @@
 
 .jump button {
   position: relative;
-  --drip: #fff;
+  --drip: var(--paper);
   --drip-text: var(--ink);
   padding: 7px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(238, 242, 244, 0.22);
   border-radius: 999px;
   background: none;
-  color: #fff;
+  color: var(--paper);
   font-size: 13px;
   white-space: nowrap;
   cursor: pointer;
@@ -170,7 +170,7 @@
 }
 
 .jump button:hover:not(:disabled) {
-  border-color: #fff;
+  border-color: var(--paper);
 }
 
 .jump button:disabled {

@@ -30,14 +30,14 @@
   left: 0;
   background:
     linear-gradient(90deg, var(--ink) 0%, transparent 100%),
-    radial-gradient(40% 60% at 70% 50%, rgba(255, 255, 255, 0.1), transparent 70%);
+    radial-gradient(40% 60% at 70% 50%, rgba(238, 242, 244, 0.1), transparent 70%);
 }
 
 .viewport::after {
   right: 0;
   background:
     linear-gradient(270deg, var(--ink) 0%, transparent 100%),
-    radial-gradient(40% 60% at 30% 50%, rgba(255, 255, 255, 0.1), transparent 70%);
+    radial-gradient(40% 60% at 30% 50%, rgba(238, 242, 244, 0.1), transparent 70%);
 }
 
 .track {
@@ -70,10 +70,10 @@
 }
 
 .item:hover {
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 1px rgba(238, 242, 244, 0.5);
 }
 
 .item:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--paper);
   outline-offset: 3px;
 }

@@ -1,11 +1,90 @@
 .section {
-  padding: clamp(48px, 7vw, 96px) 0;
-  background: var(--pink);
+  --pour: 2.6s;
+  --pour-ease: cubic-bezier(0.45, 0, 0.15, 1);
+  --pad: clamp(48px, 7vw, 96px);
+  /* Faixa sólida em cima e gotas na borda de baixo, igual ao hover dos botões. */
+  --drip-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60' preserveAspectRatio='none'%3E%3Cpath d='M0 0H100V33C96 33 95 40 93.5 47C92.5 52 88.5 52 87.5 47C86 38 82 33 76 35C72 36.5 71 43 68 43C65 43 65 35 58 34C52 33.5 51 49 47.5 55.5C45.5 59 41 58 41 52.5C41 41 37 34 30 35C25 36 24 41 21 41C18 41 18 33 12 33C8 33 7 43 5 43C3 43 2 33 0 33Z'/%3E%3C/svg%3E");
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: var(--pad) 0;
+  background: var(--paper);
+  color: var(--ink);
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
 }
 
+/* Tinta rosa atrás do texto. */
+.section::before,
+.paintFill {
+  position: absolute;
+  top: -10%;
+  left: -2px;
+  right: -2px;
+  height: 210%;
+  -webkit-mask: var(--drip-mask) top / 100% 100% no-repeat;
+  mask: var(--drip-mask) top / 100% 100% no-repeat;
+  transform: translateY(-102%);
+  transition: transform var(--pour) var(--pour-ease);
+  pointer-events: none;
+}
+
+.section::before {
+  content: '';
+  z-index: -1;
+  background: var(--pink);
+}
+
+.poured::before,
+.poured .paintFill {
+  transform: translateY(0);
+}
+
+/* Letras em gelo no mesmo recorte da tinta. A cópia não se move: o conteúdo interno anda
+   no sentido contrário da máscara (102% de 210% = 214,2% da altura da seção). */
+.paint {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.paintFill {
+  color: var(--paper);
+}
+
+.paintInner {
+  position: absolute;
+  top: calc(100% * 10 / 210);
+  left: 2px;
+  right: 2px;
+  height: calc(100% * 100 / 210);
+  padding: var(--pad) 0;
+  transform: translateY(214.2%);
+  transition: transform var(--pour) var(--pour-ease);
+}
+
+.poured .paintInner {
+  transform: translateY(0);
+}
+
+.paintFill .kicker {
+  border-bottom-color: color-mix(in srgb, var(--paper) 42%, transparent);
+}
+
+/* Terminada a descida, o texto real fica em gelo e a cópia sai. */
+.done {
+  color: var(--paper);
+}
+
+.done .kicker {
+  border-bottom-color: color-mix(in srgb, var(--paper) 42%, transparent);
+}
+
 .layout {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
   align-items: end;
@@ -43,5 +122,12 @@
 
   .side :global(.btn) {
     width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section::before {
+    transition: none;
+    transform: translateY(0);
   }
 }

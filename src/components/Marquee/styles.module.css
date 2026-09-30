@@ -2,7 +2,7 @@
   overflow: hidden;
   padding: 12px 0;
   background: var(--ink);
-  color: #fff;
+  color: var(--paper);
 }
 
 .track {

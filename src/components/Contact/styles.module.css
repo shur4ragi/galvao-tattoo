@@ -1,6 +1,6 @@
 .section {
   position: relative;
-  background: #fff;
+  background: var(--paper);
 }
 
 .edge {
@@ -10,7 +10,7 @@
 .band {
   padding: clamp(20px, 3vw, 36px) 0 clamp(48px, 6vw, 80px);
   background: var(--ink);
-  color: #fff;
+  color: var(--paper);
 }
 
 .kicker {
@@ -19,7 +19,7 @@
   gap: 8px;
   margin: 0 0 clamp(24px, 3vw, 40px);
   padding-bottom: 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  border-bottom: 1px solid rgba(238, 242, 244, 0.18);
   font-size: 11px;
   font-weight: 500;
   text-transform: uppercase;
@@ -46,7 +46,7 @@
 }
 
 .title :global(.sign) {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(238, 242, 244, 0.7);
   font-size: 0.8em;
   letter-spacing: 0;
 }
@@ -54,7 +54,7 @@
 .lead {
   max-width: 440px;
   margin: 14px 0 0;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(238, 242, 244, 0.65);
   font-size: 16px;
   line-height: 1.5;
 }
@@ -69,11 +69,11 @@
   grid-template-columns: 96px minmax(0, 1fr);
   gap: 12px;
   padding: 12px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: 1px solid rgba(238, 242, 244, 0.14);
 }
 
 .info dt {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(238, 242, 244, 0.5);
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
@@ -91,12 +91,12 @@
 }
 
 .info a {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(238, 242, 244, 0.3);
   transition: border-color 0.35s var(--ease);
 }
 
 .info a:hover {
-  border-color: #fff;
+  border-color: var(--paper);
 }
 
 .social a {
@@ -118,7 +118,7 @@
   padding: 0;
   border: 0;
   background: none;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(238, 242, 244, 0.7);
   font-size: 13px;
   cursor: pointer;
   transition: color 0.35s var(--ease);
@@ -131,7 +131,7 @@
 }
 
 .inline:hover {
-  color: #fff;
+  color: var(--paper);
 }
 
 .inline:hover svg {
@@ -147,7 +147,7 @@
   margin-top: 20px;
   padding: 0;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(238, 242, 244, 0.16);
   border-radius: 14px;
   background: #222;
   cursor: pointer;
@@ -178,7 +178,7 @@
   gap: 6px;
   padding: 7px 14px;
   border-radius: 999px;
-  background: #fff;
+  background: var(--paper);
   color: var(--ink);
   font-size: 13px;
   font-weight: 500;
@@ -194,9 +194,9 @@
   display: grid;
   gap: 18px;
   padding: clamp(22px, 3vw, 36px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(238, 242, 244, 0.14);
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(238, 242, 244, 0.03);
 }
 
 .formTitle {
@@ -218,7 +218,7 @@
 }
 
 .field > span {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(238, 242, 244, 0.6);
   font-size: 12px;
   font-weight: 500;
 }
@@ -228,10 +228,10 @@
   width: 100%;
   padding: 10px 0;
   border: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  border-bottom: 1px solid rgba(238, 242, 244, 0.25);
   border-radius: 0;
   background: transparent;
-  color: #fff;
+  color: var(--paper);
   font: inherit;
   font-size: 16px;
   outline: none;
@@ -245,12 +245,12 @@
 }
 
 .field ::placeholder {
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(238, 242, 244, 0.35);
 }
 
 .field input:focus,
 .field textarea:focus {
-  border-bottom-color: #fff;
+  border-bottom-color: var(--paper);
 }
 
 .field [aria-invalid='true'] {
@@ -270,7 +270,7 @@
 
 .hint {
   margin: -6px 0 0;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(238, 242, 244, 0.45);
   font-size: 12px;
 }
 

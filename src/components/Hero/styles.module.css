@@ -13,7 +13,7 @@
   flex-direction: column;
   min-height: 100vh;
   min-height: 100svh;
-  background: #fff;
+  background: var(--paper);
 }
 
 /* Painel com altura fixa; só o fundo preto é revelado por recorte (sem refazer layout). */
@@ -22,7 +22,7 @@
   z-index: 2;
   flex: none;
   height: var(--pmax);
-  color: #fff;
+  color: var(--paper);
 }
 
 .panelBg {
@@ -95,7 +95,7 @@
 .subtitle {
   max-width: 480px;
   margin: 14px 0 0;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(238, 242, 244, 0.72);
   font-size: clamp(15px, 1.3vw, 18px);
   line-height: 1.4;
 }
@@ -103,13 +103,13 @@
 .pill {
   position: absolute;
   --drip: var(--ink);
-  --drip-text: #fff;
-  border: 1px solid #fff;
+  --drip-text: var(--paper);
+  border: 1px solid var(--paper);
   top: 18px;
   right: clamp(16px, 3vw, 40px);
   padding: 9px 20px;
   border-radius: 999px;
-  background: #fff;
+  background: var(--paper);
   color: var(--ink);
   font-size: 13px;
   font-weight: 500;

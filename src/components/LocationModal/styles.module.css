@@ -18,7 +18,7 @@
   max-height: calc(100dvh - 24px);
   overflow: hidden;
   border-radius: 18px;
-  background: #fff;
+  background: var(--paper);
   color: var(--ink);
   box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3);
   animation: rise 0.5s var(--ease);
@@ -81,7 +81,7 @@
 .close {
   position: relative;
   --drip: var(--ink);
-  --drip-text: #fff;
+  --drip-text: var(--paper);
   display: grid;
   place-items: center;
   width: 36px;

@@ -9,7 +9,7 @@
   justify-content: center;
   gap: 12px;
   width: var(--frame);
-  background: #fff;
+  background: var(--paper);
   pointer-events: none;
 }
 

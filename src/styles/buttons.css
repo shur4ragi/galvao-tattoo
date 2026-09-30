@@ -10,12 +10,12 @@
   border: 1px solid var(--ink);
   border-radius: 999px;
   background: var(--ink);
-  color: #fff;
+  color: var(--paper);
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0;
   cursor: pointer;
-  --drip: #fff;
+  --drip: var(--paper);
   --drip-text: var(--ink);
   transition: color 0.3s var(--ease) 0.24s, border-color 0.45s var(--ease), transform 0.4s var(--ease);
 }
@@ -41,7 +41,7 @@
   border-color: color-mix(in srgb, currentColor 22%, transparent);
   color: inherit;
   --drip: var(--ink);
-  --drip-text: #fff;
+  --drip-text: var(--paper);
 }
 
 .btn--soft:hover {
@@ -50,11 +50,11 @@
 
 /* Versão clara para fundos pretos: tinta preta escorrendo sobre o branco. */
 .btn--light {
-  background: #fff;
-  border-color: #fff;
+  background: var(--paper);
+  border-color: var(--paper);
   color: var(--ink);
   --drip: var(--ink);
-  --drip-text: #fff;
+  --drip-text: var(--paper);
 }
 
 /* ---------- Tinta escorrendo ----------
@@ -88,7 +88,7 @@
 @media (hover: hover) {
   .btn:hover,
   .drip:hover {
-    color: var(--drip-text, #fff);
+    color: var(--drip-text, var(--paper));
   }
 
   .btn:hover::before,
@@ -104,5 +104,5 @@
 
 .btn:focus-visible,
 .drip:focus-visible {
-  color: var(--drip-text, #fff);
+  color: var(--drip-text, var(--paper));
 }

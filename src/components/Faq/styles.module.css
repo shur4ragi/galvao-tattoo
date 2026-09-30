@@ -1,6 +1,6 @@
 .section {
   padding: clamp(72px, 10vw, 140px) 0;
-  background: #fff;
+  background: var(--paper);
   color: var(--ink);
 }
 
@@ -96,7 +96,7 @@
 
 .item[data-open='true'] .heading i::before,
 .item[data-open='true'] .heading i::after {
-  background: #fff;
+  background: var(--paper);
 }
 
 /* Abre e fecha animando a altura (0fr → 1fr), sem medir o conteúdo. */

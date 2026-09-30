@@ -5,7 +5,7 @@
   display: grid;
   place-items: center;
   padding: 24px;
-  background: rgba(255, 255, 255, 0.86);
+  background: rgba(238, 242, 244, 0.86);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   animation: fade 0.3s var(--ease);
@@ -19,7 +19,7 @@
   padding: 32px 28px 26px;
   border: 1px solid var(--line);
   border-radius: 18px;
-  background: #fff;
+  background: var(--paper);
   color: var(--ink);
   text-align: center;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
@@ -90,7 +90,7 @@
 
 /* Contorno se desenhando, como traço de agulha. */
 .draw {
-  fill: #fff;
+  fill: var(--paper);
   stroke: currentColor;
   stroke-width: 3.5;
   stroke-linejoin: round;

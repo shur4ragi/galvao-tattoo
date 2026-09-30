@@ -1,11 +1,12 @@
 :root {
-  --paper: #fff;
-  --paper-2: #efefef;
-  --ink: #151515;
-  --ink-2: #1f1f1f;
-  --mute: #7d7d7d;
-  --line: rgba(21, 21, 21, 0.14);
-  --line-light: rgba(236, 236, 236, 0.22);
+  /* Gelo e carvão: sem branco 100% nem preto 100%. */
+  --paper: #eef2f4;
+  --paper-2: #e3e8eb;
+  --ink: #2a2a28;
+  --ink-2: #353532;
+  --mute: #6f6f6c;
+  --line: rgba(42, 42, 40, 0.16);
+  --line-light: rgba(238, 242, 244, 0.22);
 
   --pink: #ee70f8;
 
@@ -64,7 +65,7 @@ button {
 
 ::selection {
   background: var(--ink);
-  color: #fff;
+  color: var(--paper);
 }
 
 :focus-visible {

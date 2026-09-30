@@ -2,7 +2,7 @@
 // cada parte separada. A cor do traço vem de `color` (currentColor).
 
 const line = { stroke: 'currentColor', strokeWidth: 3.5, strokeLinejoin: 'round', strokeLinecap: 'round' };
-const paper = { ...line, fill: '#fff' };
+const paper = { ...line, fill: '#eef2f4' };
 const ink = { fill: 'currentColor' };
 
 const RIBS = [82, 96, 110, 124, 138];

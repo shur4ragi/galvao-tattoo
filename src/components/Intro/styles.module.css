@@ -6,7 +6,7 @@
   grid-template-rows: auto minmax(0, 1fr) auto;
   justify-items: center;
   padding: 20px var(--gutter) 28px;
-  background: #fff;
+  background: var(--paper);
   color: var(--ink);
   transition: transform 0.85s var(--ease);
 }
