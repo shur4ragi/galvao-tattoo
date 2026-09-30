@@ -14,6 +14,7 @@ import Faq from './components/Faq/index.jsx';
 import Contact from './components/Contact/index.jsx';
 import Footer from './components/Footer/index.jsx';
 import WhatsAppFloat from './components/WhatsAppFloat/index.jsx';
+import ExternalLoader from './components/ExternalLoader/index.jsx';
 
 // Preto e branco, dentro da moldura lateral fixa: hero automático que termina apresentando o
 // Yuri → portfólio em carrossel curvo → citação → histórias → passo a passo → mentorias
@@ -40,6 +41,7 @@ export default function App() {
       </main>
       <Footer />
       <WhatsAppFloat />
+      <ExternalLoader />
     </>
   );
 }

@@ -17,6 +17,12 @@ export const contact = {
   hours: 'Atendimento com hora marcada',
 };
 
+// Campos do formulário de contato (a mensagem sai montada no WhatsApp).
+export const contactForm = {
+  bodyParts: ['Braço', 'Antebraço', 'Mão ou dedos', 'Costas', 'Perna', 'Costela', 'Pescoço ou nuca', 'Ainda não sei'],
+  sizes: ['Pequena (até 5 cm)', 'Média (5 a 15 cm)', 'Grande (mais de 15 cm)', 'Ainda não sei'],
+};
+
 export const messages = {
   budget: 'Oi Yuri! Vim pelo site e quero fazer uma tatuagem. Minha ideia é…',
   mentoring: 'Oi Yuri! Vim pelo site e quero saber mais sobre a mentoria para tatuadores.',

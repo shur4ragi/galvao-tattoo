@@ -21,11 +21,13 @@ npm run lint
 - **Facebook**: aparece no contato quando `contact.facebook` tiver o link.
 - **Abertura**: `src/components/Intro`. Máquina vibrando, gotas e poça que crescem com o carregamento real (página e fontes; mínimo 1,8 s, máximo 6 s). No 100% a tinta cobre a tela e a cortina sobe. Não aparece para quem prefere menos movimento.
 - **Skeletons**: `src/components/ui/InkSkeleton.jsx`, com pote de tinta derramando (fotos) ou maquininha pingando (foto do Yuri e mapa). Para ver sem rede lenta, abra a página com `?skeleton` no fim do endereço.
+- **Saída para WhatsApp e Google Maps**: `src/components/ExternalLoader` intercepta qualquer link desses destinos e mostra uma tela de carregamento por 1,6 s: a maquininha escrevendo num balão, ou a gota virando o pino do mapa. Dá para cancelar. Se o navegador bloquear a nova aba, o link abre na mesma. Para abrir um destino por código, use `openWithLoader(href)` de `src/utils/outbound.js`.
+- **Contato**: formulário com nome, WhatsApp, local do corpo, tamanho e ideia, que monta a mensagem e abre o WhatsApp. As opções ficam em `contactForm`, em `site.js`. A prévia do mapa e o "Ver localização" abrem `src/components/LocationModal`, com rota, Google Maps e copiar endereço.
 - **Ilustrações**: `src/components/ui/TattooArt.jsx`, em SVG próprio com traço preto e fundo branco.
 
 ## Seções
 
-Abertura de carregamento (preto e branco) → **hero automático** em 3 passos, que começa quando a cortina sobe (rolar ou teclar pula direto para o fim): aspas e "Sua história ainda guardada", depois o painel preto descendo com a moldura lateral, e por fim **a apresentação do Yuri, que faz o papel do Sobre** (foto, texto, números e especialidades) → faixa preta → 01 Portfólio em carrossel curvo, com "Ver todos os trabalhos" abrindo um modal com filtros e skeletons → citação → 02 Histórias → 03 Como funciona → Mentorias (rosa) → 04 Dúvidas → 05 Contato e rodapé.
+Abertura de carregamento (preto e branco) → **hero automático** em 3 passos, que começa quando a cortina sobe (rolar ou teclar pula direto para o fim): aspas e "Sua história ainda guardada", depois o painel preto descendo com a moldura lateral, e por fim **a apresentação do Yuri, que faz o papel do Sobre** (foto, texto, números e especialidades) → faixa preta → 01 Portfólio em carrossel curvo, com "Ver todos os trabalhos" abrindo um modal com filtros e skeletons → citação → 02 Histórias → 03 Como funciona → Mentorias (rosa) → 04 Dúvidas → 05 Contato (formulário, prévia do mapa e modal de localização) e rodapé.
 
 **Moldura**: colunas brancas fixas nas laterais (`src/components/FrameRails`, largura em `--frame`), com linha fina na borda do conteúdo. A barra da esquerda mostra o progresso de rolagem da página. Ela aparece a partir do passo 2 do hero.
 
