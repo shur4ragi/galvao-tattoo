@@ -38,8 +38,9 @@
   height: 24px;
 }
 
-.float:hover {
-  background: #2c2c2c;
+.float {
+  --drip: #fff;
+  --drip-text: var(--ink);
 }
 
 @media (max-width: 600px) {

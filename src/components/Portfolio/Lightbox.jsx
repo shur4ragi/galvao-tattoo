@@ -49,7 +49,7 @@ export default function Lightbox({ items, index, onChange, onClose }) {
     >
       <div className={styles.top}>
         <span>{String(index + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}</span>
-        <button ref={closeRef} type="button" className={styles.close} onClick={onClose}>
+        <button ref={closeRef} type="button" className={`drip ${styles.close}`} onClick={onClose}>
           Fechar <span aria-hidden="true">✕</span>
         </button>
       </div>
@@ -61,10 +61,10 @@ export default function Lightbox({ items, index, onChange, onClose }) {
 
       {items.length > 1 && (
         <>
-          <button type="button" className={`${styles.nav} ${styles.prev}`} onClick={() => go(-1)} aria-label="Foto anterior">
+          <button type="button" className={`drip ${styles.nav} ${styles.prev}`} onClick={() => go(-1)} aria-label="Foto anterior">
             <ArrowIcon />
           </button>
-          <button type="button" className={`${styles.nav} ${styles.next}`} onClick={() => go(1)} aria-label="Próxima foto">
+          <button type="button" className={`drip ${styles.nav} ${styles.next}`} onClick={() => go(1)} aria-label="Próxima foto">
             <ArrowIcon />
           </button>
         </>

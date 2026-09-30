@@ -67,6 +67,9 @@
 
 .pill {
   position: absolute;
+  --drip: var(--ink);
+  --drip-text: #fff;
+  border: 1px solid #fff;
   top: 18px;
   right: clamp(16px, 3vw, 40px);
   padding: 9px 20px;
@@ -76,11 +79,7 @@
   font-size: 13px;
   font-weight: 500;
   pointer-events: none;
-  transition: background 0.4s var(--ease);
-}
-
-.pill:hover {
-  background: #e9e9e9;
+  transition: color 0.3s var(--ease) 0.24s;
 }
 
 .body {

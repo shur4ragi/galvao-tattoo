@@ -64,7 +64,7 @@ export default function Header() {
           <span className={styles.clock}>
             Taubaté <b>{clock}</b>
           </span>
-          <a className={styles.cta} href={budgetHref} target="_blank" rel="noopener noreferrer">
+          <a className={`drip ${styles.cta}`} href={budgetHref} target="_blank" rel="noopener noreferrer">
             Orçamento
           </a>
           <button

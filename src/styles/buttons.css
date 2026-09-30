@@ -1,0 +1,108 @@
+/* Botões: leves, sem caixa alta. O hover é tinta escorrendo de cima para baixo. */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  cursor: pointer;
+  --drip: #fff;
+  --drip-text: var(--ink);
+  transition: color 0.3s var(--ease) 0.24s, border-color 0.45s var(--ease), transform 0.4s var(--ease);
+}
+
+.btn svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  transition: transform 0.4s var(--ease);
+}
+
+.btn:hover svg:last-child {
+  transform: translateX(2px);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* Contorno fino: a tinta é preta e o texto fica branco. */
+.btn--soft {
+  background: transparent;
+  border-color: color-mix(in srgb, currentColor 22%, transparent);
+  color: inherit;
+  --drip: var(--ink);
+  --drip-text: #fff;
+}
+
+.btn--soft:hover {
+  border-color: var(--ink);
+}
+
+/* Versão clara para fundos pretos: tinta preta escorrendo sobre o branco. */
+.btn--light {
+  background: #fff;
+  border-color: #fff;
+  color: var(--ink);
+  --drip: var(--ink);
+  --drip-text: #fff;
+}
+
+/* ---------- Tinta escorrendo ----------
+   .btn e qualquer elemento com .drip. O elemento precisa de position diferente de static
+   (o .btn já tem; os demais definem no próprio CSS). --drip é a cor da tinta e --drip-text
+   a cor do texto por cima dela. */
+.btn,
+.drip {
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.btn::before,
+.drip::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -2px;
+  right: -2px;
+  z-index: -1;
+  height: 210%;
+  background: var(--drip, var(--ink));
+  /* Faixa sólida em cima e gotas na borda de baixo, que chegam primeiro. */
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60' preserveAspectRatio='none'%3E%3Cpath d='M0 0H100V33C96 33 95 40 93.5 47C92.5 52 88.5 52 87.5 47C86 38 82 33 76 35C72 36.5 71 43 68 43C65 43 65 35 58 34C52 33.5 51 49 47.5 55.5C45.5 59 41 58 41 52.5C41 41 37 34 30 35C25 36 24 41 21 41C18 41 18 33 12 33C8 33 7 43 5 43C3 43 2 33 0 33Z'/%3E%3C/svg%3E") top / 100% 100% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60' preserveAspectRatio='none'%3E%3Cpath d='M0 0H100V33C96 33 95 40 93.5 47C92.5 52 88.5 52 87.5 47C86 38 82 33 76 35C72 36.5 71 43 68 43C65 43 65 35 58 34C52 33.5 51 49 47.5 55.5C45.5 59 41 58 41 52.5C41 41 37 34 30 35C25 36 24 41 21 41C18 41 18 33 12 33C8 33 7 43 5 43C3 43 2 33 0 33Z'/%3E%3C/svg%3E") top / 100% 100% no-repeat;
+  transform: translateY(-102%);
+  transition: transform 0.7s cubic-bezier(0.6, 0, 0.25, 1);
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .btn:hover,
+  .drip:hover {
+    color: var(--drip-text, #fff);
+  }
+
+  .btn:hover::before,
+  .drip:hover::before {
+    transform: translateY(0);
+  }
+}
+
+.btn:focus-visible::before,
+.drip:focus-visible::before {
+  transform: translateY(0);
+}
+
+.btn:focus-visible,
+.drip:focus-visible {
+  color: var(--drip-text, #fff);
+}

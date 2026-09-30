@@ -29,6 +29,7 @@
 }
 
 .close {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -98,10 +99,10 @@
   height: 20px;
 }
 
-.nav:hover,
-.close:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.6);
+.nav,
+.close {
+  --drip: #fff;
+  --drip-text: var(--ink);
 }
 
 .prev {

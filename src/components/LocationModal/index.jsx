@@ -53,7 +53,7 @@ export default function LocationModal({ onClose }) {
             <p className={styles.kicker}>
               <Mark /> / Localização
             </p>
-            <button ref={closeRef} type="button" className={styles.close} onClick={onClose} aria-label="Fechar localização">
+            <button ref={closeRef} type="button" className={`drip ${styles.close}`} onClick={onClose} aria-label="Fechar localização">
               ✕
             </button>
           </div>

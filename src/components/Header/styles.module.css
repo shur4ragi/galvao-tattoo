@@ -119,6 +119,9 @@
 }
 
 .cta {
+  position: relative;
+  --drip: #fff;
+  --drip-text: var(--ink);
   padding: 9px 18px;
   border-radius: 999px;
   background: var(--ink);
@@ -126,11 +129,7 @@
   font-size: 13px;
   font-weight: 500;
   white-space: nowrap;
-  transition: background 0.4s var(--ease);
-}
-
-.cta:hover {
-  background: #2c2c2c;
+  transition: color 0.3s var(--ease) 0.24s;
 }
 
 .burger {

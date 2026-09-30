@@ -79,29 +79,44 @@ export default function GalleryModal({ onClose, onOpenPhoto, blockEscape }) {
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose, blockEscape]);
 
+  // Cabeçalho compacto depois de rolar: recolhe título e frase, mantém atalhos e fechar.
+  const [compact, setCompact] = useState(false);
+  const onSheetScroll = (e) => setCompact(e.currentTarget.scrollTop > 40);
+
   const goTo = (id) => {
     const sheet = sheetRef.current;
     const target = sheet?.querySelector(`[data-section="${id}"]`);
-    if (target) sheet.scrollTo({ top: target.offsetTop - 84, behavior: 'smooth' });
+    const head = sheet?.querySelector('header');
+    if (target) sheet.scrollTo({ top: target.offsetTop - (head?.offsetHeight ?? 0) - 16, behavior: 'smooth' });
   };
 
   return (
     <div className={styles.overlay} role="dialog" aria-modal="true" aria-labelledby="galeria-titulo">
-      <div ref={sheetRef} className={styles.sheet} data-ready={ready}>
-        <header className={styles.head}>
-          <p id="galeria-titulo" className={styles.title}>
-            <Mark /> / Todos os trabalhos <span>{portfolio.length}</span>
-          </p>
+      <div ref={sheetRef} className={styles.sheet} data-ready={ready} onScroll={onSheetScroll}>
+        <header className={styles.head} data-compact={compact}>
+          <div className={styles.headTop}>
+            <p className={styles.kicker}>
+              <Mark /> / Portfólio
+            </p>
+            <button ref={closeRef} type="button" className={`btn btn--soft ${styles.closeBtn}`} onClick={onClose}>
+              Fechar <span aria-hidden="true">✕</span>
+            </button>
+          </div>
+          <div className={styles.intro}>
+            <div>
+              <h2 id="galeria-titulo" className={styles.title}>Todos os trabalhos</h2>
+              <p className={styles.lead}>
+                {portfolio.length} tatuagens, separadas por estilo. Toque em uma foto para ampliar.
+              </p>
+            </div>
+          </div>
           <nav className={styles.jump} aria-label="Seções">
             {sections.map((section) => (
-              <button key={section.id} type="button" onClick={() => goTo(section.id)} disabled={!ready}>
+              <button key={section.id} type="button" className="drip" onClick={() => goTo(section.id)} disabled={!ready}>
                 {section.title}
               </button>
             ))}
           </nav>
-          <button ref={closeRef} type="button" className="btn btn--soft" onClick={onClose}>
-            Fechar <span aria-hidden="true">✕</span>
-          </button>
         </header>
 
         {!ready && (
@@ -130,33 +145,38 @@ export default function GalleryModal({ onClose, onOpenPhoto, blockEscape }) {
           </div>
         )}
 
-        <div className={styles.content} aria-hidden={!ready}>
-          {sections.map((section, s) => (
-            <section key={section.id} className={styles.section} data-section={section.id} style={{ '--s': s }}>
-              <div className={styles.sectionHead}>
-                <span className={styles.num}>{String(s + 1).padStart(2, '0')}</span>
-                <h3>{section.title}</h3>
-                <p>{section.text}</p>
-                <small>
-                  {section.items.length} {section.items.length === 1 ? 'trabalho' : 'trabalhos'}
-                </small>
-              </div>
 
-              <ul className={styles.grid}>
-                {section.items.map((item, i) => (
-                  <li key={item.src} style={{ '--i': i }}>
-                    <button type="button" className={styles.card} onClick={() => onOpenPhoto(section.items, i)} tabIndex={ready ? undefined : -1}>
-                      <span className={styles.media}>
-                        <img src={item.src} alt={item.alt} width="464" height="464" />
-                      </span>
-                      <span className={styles.caption}>{item.alt}</span>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ))}
-        </div>
+
+
+        {ready && (
+          <div className={styles.content}>
+            {sections.map((section, s) => (
+              <section key={section.id} className={styles.section} data-section={section.id} style={{ '--s': s }}>
+                <div className={styles.sectionHead}>
+                  <span className={styles.num}>{String(s + 1).padStart(2, '0')}</span>
+                  <h3>{section.title}</h3>
+                  <p>{section.text}</p>
+                  <small>
+                    {section.items.length} {section.items.length === 1 ? 'trabalho' : 'trabalhos'}
+                  </small>
+                </div>
+
+                <ul className={styles.grid}>
+                  {section.items.map((item, i) => (
+                    <li key={item.src} style={{ '--i': i }}>
+                      <button type="button" className={styles.card} onClick={() => onOpenPhoto(section.items, i)}>
+                        <span className={styles.media}>
+                          <img src={item.src} alt={item.alt} width="464" height="464" />
+                        </span>
+                        <span className={styles.caption}>{item.alt}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

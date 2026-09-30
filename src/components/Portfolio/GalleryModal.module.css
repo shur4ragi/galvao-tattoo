@@ -1,19 +1,25 @@
+/* Cartão flutuante com cantos arredondados sobre a página escurecida. */
 .overlay {
   position: fixed;
   inset: 0;
   z-index: 110;
-  background: rgba(21, 21, 21, 0.4);
+  background: rgba(21, 21, 21, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   animation: fade 0.4s var(--ease);
 }
 
 .sheet {
   position: absolute;
-  inset: 0;
+  inset: clamp(8px, 2.2vw, 32px);
+  display: flex;
+  flex-direction: column;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: 0 clamp(16px, 4vw, 64px) 64px;
+  border-radius: 24px;
   background: #fff;
   color: var(--ink);
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.35);
   animation: rise 0.6s var(--ease);
 }
 
@@ -34,22 +40,27 @@
   }
 }
 
-/* Cabeçalho fixo: título, atalhos para as seções e fechar. */
+/* Cabeçalho escuro, fixo no topo do cartão. Ao rolar, recolhe título e frase. */
 .head {
   position: sticky;
   top: 0;
   z-index: 5;
-  display: flex;
-  align-items: center;
-  gap: 16px 24px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  flex: none;
+  display: grid;
+  gap: 0;
+  padding: 18px clamp(18px, 3vw, 40px) 16px;
+  background: var(--ink);
+  color: #fff;
 }
 
-.title {
+.headTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.kicker {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -57,19 +68,55 @@
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
-  white-space: nowrap;
 }
 
-.title span {
-  color: var(--mute);
+.closeBtn {
+  min-height: 38px;
+  font-size: 13px;
+  --drip: #fff;
+  --drip-text: var(--ink);
+}
+
+.intro {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.5s var(--ease), opacity 0.4s var(--ease);
+}
+
+.intro > div {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.head[data-compact='true'] .intro {
+  grid-template-rows: 0fr;
+  opacity: 0;
+}
+
+.title {
+  margin: 18px 0 6px;
+  font-size: clamp(30px, 3.6vw, 52px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.lead {
+  margin: 0 0 4px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
 }
 
 .jump {
   display: flex;
-  gap: 4px;
-  margin: 0 auto;
+  gap: 6px;
+  margin-top: 16px;
   overflow-x: auto;
   scrollbar-width: none;
+}
+
+.head[data-compact='true'] .jump {
+  margin-top: 12px;
 }
 
 .jump::-webkit-scrollbar {
@@ -77,20 +124,22 @@
 }
 
 .jump button {
-  padding: 7px 14px;
-  border: 0;
+  position: relative;
+  --drip: #fff;
+  --drip-text: var(--ink);
+  padding: 7px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 999px;
   background: none;
-  color: #555;
+  color: #fff;
   font-size: 13px;
   white-space: nowrap;
   cursor: pointer;
-  transition: background 0.35s var(--ease), color 0.35s var(--ease);
+  transition: color 0.3s var(--ease) 0.24s, border-color 0.35s var(--ease);
 }
 
 .jump button:hover:not(:disabled) {
-  background: var(--paper-2);
-  color: var(--ink);
+  border-color: #fff;
 }
 
 .jump button:disabled {
@@ -98,23 +147,15 @@
   cursor: default;
 }
 
-.head :global(.btn) {
-  flex: none;
-  min-height: 38px;
-  font-size: 13px;
-}
-
 /* Carregamento geral: cobre a área do modal inteira. */
 .loader {
-  position: absolute;
-  inset: 67px 0 0;
-  z-index: 4;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background: #fff;
+  padding: 40px 0;
 }
 
 .loaderArt {
@@ -214,14 +255,9 @@
   }
 }
 
-/* Conteúdo: escondido até tudo carregar, depois entra em cascata. */
+/* Conteúdo: montado quando tudo carregou, entra em cascata. */
 .content {
-  opacity: 0;
-}
-
-.sheet[data-ready='true'] .content {
-  opacity: 1;
-  transition: opacity 0.4s var(--ease);
+  padding: 0 clamp(18px, 3vw, 40px) 48px;
 }
 
 .section {
@@ -238,7 +274,7 @@
 
 .sectionHead {
   position: sticky;
-  top: 90px;
+  top: 150px;
   align-self: start;
   display: grid;
   gap: 6px;
@@ -298,7 +334,7 @@
 .media {
   display: block;
   overflow: hidden;
-  border-radius: 6px;
+  border-radius: 14px;
   aspect-ratio: 1;
   background: var(--paper-2);
 }
@@ -333,18 +369,8 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .head {
-    flex-wrap: wrap;
-  }
-
-  .jump {
-    order: 3;
-    width: 100%;
-    margin: 0;
-  }
-
-  .loader {
-    inset: 108px 0 0;
+  .sheet {
+    border-radius: 18px;
   }
 
   .section {

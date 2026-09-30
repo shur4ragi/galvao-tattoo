@@ -17,7 +17,7 @@ export default function WhatsAppFloat() {
 
   return (
     <a
-      className={`${styles.float} ${visible ? styles.visible : ''}`}
+      className={`drip ${styles.float} ${visible ? styles.visible : ''}`}
       href={whatsappUrl(contact.whatsapp, messages.budget)}
       target="_blank"
       rel="noopener noreferrer"

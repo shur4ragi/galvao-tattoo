@@ -83,7 +83,7 @@ export default function Hero() {
           </h1>
           <p className={styles.subtitle}>{sequence.subtitle}</p>
         </div>
-        <a className={styles.pill} href={whatsappUrl(contact.whatsapp, messages.budget)} target="_blank" rel="noopener noreferrer">
+        <a className={`drip ${styles.pill}`} href={whatsappUrl(contact.whatsapp, messages.budget)} target="_blank" rel="noopener noreferrer">
           Orçamento
         </a>
       </div>
