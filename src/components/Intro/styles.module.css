@@ -1,0 +1,66 @@
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 28px;
+  background: var(--ink);
+  transition: transform 0.9s var(--ease);
+}
+
+.leave {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.count {
+  font-size: clamp(22px, 3vw, 30px);
+  font-stretch: 70%;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  font-variant-numeric: tabular-nums;
+}
+
+.count span {
+  opacity: 0.18;
+  transition: opacity 0.3s;
+}
+
+.count .on {
+  opacity: 1;
+}
+
+.count em {
+  font-style: normal;
+  color: var(--mute);
+}
+
+.line {
+  width: min(320px, 70vw);
+  height: 1px;
+  background: var(--bone);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: draw 1.2s var(--ease) 0.1s forwards;
+}
+
+@keyframes draw {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.name {
+  margin: 0;
+  color: var(--bone-2);
+  font-size: 12px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.name :global(.script) {
+  font-size: 20px;
+  letter-spacing: 0;
+}

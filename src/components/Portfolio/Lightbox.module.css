@@ -1,0 +1,123 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background: #070707;
+  animation: fade 0.35s var(--ease);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+  padding: 0 var(--gutter);
+  color: var(--bone-2);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  font-variant-numeric: tabular-nums;
+}
+
+.close {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 4px;
+  border: 0;
+  background: none;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 0;
+  margin: 0;
+  padding: 0 var(--gutter) 32px;
+}
+
+/* As fotos atuais são pequenas: o limite de tamanho evita ampliar e borrar demais. */
+.figure img {
+  width: auto;
+  max-width: min(100%, 620px);
+  max-height: calc(100dvh - var(--header-h) - 90px);
+  object-fit: contain;
+  animation: zoom 0.5s var(--ease);
+}
+
+@keyframes zoom {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+.figure figcaption {
+  color: var(--bone-2);
+  font-size: 14px;
+  text-align: center;
+}
+
+.nav {
+  position: fixed;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-top: -26px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: rgba(11, 11, 10, 0.6);
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.nav svg {
+  width: 20px;
+  height: 20px;
+}
+
+.nav:hover {
+  background: var(--bone);
+  color: var(--ink);
+}
+
+.prev {
+  left: var(--gutter);
+}
+
+.prev svg {
+  transform: rotate(180deg);
+}
+
+.next {
+  right: var(--gutter);
+}
+
+@media (max-width: 640px) {
+  .nav {
+    top: auto;
+    bottom: 20px;
+    margin-top: 0;
+  }
+
+  .figure {
+    padding-bottom: 96px;
+  }
+}

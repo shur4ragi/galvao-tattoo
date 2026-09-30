@@ -1,0 +1,50 @@
+.float {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 56px;
+  padding: 0 22px 0 18px;
+  border-radius: 999px;
+  background: var(--wa);
+  color: #06260f;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+.visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.float svg {
+  width: 24px;
+  height: 24px;
+}
+
+.float:hover {
+  filter: brightness(1.08);
+}
+
+@media (max-width: 600px) {
+  .float {
+    width: 56px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .float span {
+    display: none;
+  }
+}

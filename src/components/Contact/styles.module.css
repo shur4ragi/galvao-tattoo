@@ -1,0 +1,136 @@
+.section {
+  padding: clamp(80px, 12vw, 160px) 0 clamp(64px, 8vw, 110px);
+  border-top: 1px solid var(--line);
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 22px;
+  color: var(--mute);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.label span {
+  color: var(--gold);
+}
+
+.label i {
+  width: 48px;
+  height: 1px;
+  background: var(--line-strong);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(56px, 12vw, 176px);
+  font-stretch: 66%;
+  font-weight: 800;
+  line-height: 0.86;
+  text-transform: uppercase;
+}
+
+.title :global(.script) {
+  display: block;
+  color: var(--gold);
+  font-size: 0.62em;
+  line-height: 1.05;
+}
+
+.cta {
+  margin-top: 36px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 40px clamp(40px, 6vw, 96px);
+  margin-top: clamp(56px, 8vw, 96px);
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+
+.info {
+  display: grid;
+  align-content: start;
+  gap: 32px;
+}
+
+.info h3 {
+  margin: 0 0 8px;
+  color: var(--mute);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.info p {
+  margin: 0;
+  font-size: 17px;
+}
+
+.info p a {
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.link {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--gold);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.social {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+}
+
+.social svg {
+  width: 20px;
+  height: 20px;
+}
+
+.map {
+  min-height: 360px;
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+/* Mapa em preto e branco invertido para combinar com o fundo escuro. */
+.map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  border: 0;
+  filter: grayscale(1) invert(0.92) contrast(0.9);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .cta {
+    width: 100%;
+  }
+}

@@ -1,0 +1,14 @@
+node_modules
+dist
+dist-ssr
+*.local
+*.log
+.env
+.env.*
+.vercel
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+Thumbs.db
+Desktop.ini

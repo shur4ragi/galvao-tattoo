@@ -1,0 +1,36 @@
+.footer {
+  padding: 24px 0 calc(96px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.word {
+  margin: 0 0 12px;
+  color: transparent;
+  font-size: clamp(88px, 25vw, 380px);
+  font-stretch: 62%;
+  font-weight: 800;
+  line-height: 0.8;
+  padding-top: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
+  -webkit-text-stroke: 1px var(--line-strong);
+  user-select: none;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--mute);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.row a:hover {
+  color: var(--bone);
+}
