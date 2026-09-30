@@ -6,6 +6,7 @@ import { ArrowIcon, FacebookIcon, InstagramIcon, WhatsAppIcon } from '../ui/icon
 import InkSkeleton from '../ui/InkSkeleton.jsx';
 import Mark from '../ui/Mark.jsx';
 import PixelEdge from '../ui/PixelEdge.jsx';
+import Select from '../ui/Select.jsx';
 import LocationModal from '../LocationModal/index.jsx';
 import styles from './styles.module.css';
 
@@ -157,20 +158,24 @@ export default function Contact() {
               </div>
 
               <div className={styles.row}>
-                <label className={styles.field}>
-                  <span>Local do corpo</span>
-                  <select value={form.body} onChange={set('body')}>
-                    <option value="">Escolha</option>
-                    {contactForm.bodyParts.map((o) => <option key={o}>{o}</option>)}
-                  </select>
-                </label>
-                <label className={styles.field}>
-                  <span>Tamanho</span>
-                  <select value={form.size} onChange={set('size')}>
-                    <option value="">Escolha</option>
-                    {contactForm.sizes.map((o) => <option key={o}>{o}</option>)}
-                  </select>
-                </label>
+                <div className={styles.field}>
+                  <span id="contato-body-label">Local do corpo</span>
+                  <Select
+                    value={form.body}
+                    onChange={(value) => setForm((f) => ({ ...f, body: value }))}
+                    options={contactForm.bodyParts}
+                    labelledBy="contato-body-label"
+                  />
+                </div>
+                <div className={styles.field}>
+                  <span id="contato-size-label">Tamanho</span>
+                  <Select
+                    value={form.size}
+                    onChange={(value) => setForm((f) => ({ ...f, size: value }))}
+                    options={contactForm.sizes}
+                    labelledBy="contato-size-label"
+                  />
+                </div>
               </div>
 
               <label className={styles.field}>

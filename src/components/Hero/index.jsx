@@ -7,16 +7,18 @@ import styles from './styles.module.css';
 
 // Linha do tempo única (ms depois que a cortina da abertura começa a subir). As etapas se
 // sobrepõem nas animações de CSS; aqui só marcamos quando a moldura aparece e quando acabou.
-const FRAME_AT = 1000;
-const DONE_AT = 4300;
+const FRAME_AT = 500;
+const DONE_AT = 2700;
 
-// Hero automático em três passos, no formato do wireframe:
-// 1. página em branco com aspas; 2. painel preto desce e a moldura lateral aparece;
-// 3. apresentação do Yuri (foto, texto e números) — é o "Sobre" do site.
+// Hero automático, no formato do wireframe:
+// 1. página em branco com aspas; 2. o painel preto desce direto, com o vídeo, e a moldura
+// lateral aparece; 3. apresentação do Yuri (foto, texto e números) — é o "Sobre" do site.
 // Tudo anima só transform, opacity e clip-path, sem refazer o layout a cada quadro.
 // Rolar ou teclar antes do fim pula direto para o estado final.
 export default function Hero() {
   const ref = useRef(null);
+  const videoRef = useRef(null);
+  const [videoReady, setVideoReady] = useState(false);
   const [phase, setPhase] = useState(() =>
     window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'done' : 'idle',
   );
@@ -28,6 +30,12 @@ export default function Hero() {
     const finish = () => setPhase('done');
     const start = () => {
       setPhase('play');
+      // O vídeo recomeça junto com a descida do painel, para abrir sempre na corrida.
+      const video = videoRef.current;
+      if (video && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        video.currentTime = 0;
+        video.play().catch(() => {});
+      }
       timers.push(setTimeout(() => root.classList.add('frame-on'), FRAME_AT));
       timers.push(setTimeout(finish, DONE_AT));
       // Só depois da abertura: rolar ou teclar pula direto para a apresentação.
@@ -69,11 +77,38 @@ export default function Hero() {
 
   useEffect(() => () => document.documentElement.classList.remove('seq-active'), []);
 
+  // O vídeo só roda com o hero na tela e sem preferência por movimento reduzido.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) video.play().catch(() => {});
+      else video.pause();
+    });
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="topo" ref={ref} className={styles.hero} data-phase={phase} aria-label="Sobre o Yuri Galvão">
       {/* Painel preto: desce no passo 2 e vira a apresentação no passo 3 */}
       <div className={styles.panel}>
-        <div className={styles.panelBg} aria-hidden="true" />
+        <div className={styles.panelBg} aria-hidden="true">
+          {/* Vídeo editado (corrida ao amanhecer + bastidores da Valefest) no canto direito,
+              escurecendo em direção ao texto. Sem movimento reduzido, fica só a foto. */}
+          <video
+            ref={videoRef}
+            className={styles.video}
+            src="/images/galvao-hero.mp4"
+            poster="/images/galvao-hero.jpg"
+            muted
+            loop
+            playsInline
+            preload="auto"
+            data-ready={videoReady}
+            onCanPlay={() => setVideoReady(true)}
+          />
+        </div>
         <div className={styles.welcome}>
           <p className={styles.eyebrow}>{sequence.eyebrow}</p>
           <h1 className={styles.title}>
@@ -131,7 +166,7 @@ export default function Hero() {
         <span className={styles.cornerClose} aria-hidden="true">”</span>
       </div>
 
-      {/* Passos 1 e 2, por cima da primeira tela */}
+      {/* Passo 1, por cima da primeira tela */}
       <div className={styles.stage} aria-hidden="true">
         <span className={`${styles.quote} ${styles.open}`}>“</span>
         <span className={`${styles.quote} ${styles.close}`}>”</span>
@@ -140,7 +175,6 @@ export default function Hero() {
           <br />
           {sequence.step1[1]}
         </p>
-        <p className={styles.step2}>{sequence.step2}</p>
         <p className={styles.hint}>
           {sequence.hint}
           <span>↓</span>

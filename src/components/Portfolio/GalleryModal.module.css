@@ -14,8 +14,7 @@
   inset: clamp(8px, 2.2vw, 32px);
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  overflow: hidden;
   border-radius: 24px;
   background: #fff;
   color: var(--ink);
@@ -23,7 +22,19 @@
   animation: rise 0.6s var(--ease);
 }
 
-.sheet[data-ready='false'] {
+/* Só esta área rola; o cabeçalho fica acima dela, fora da rolagem. */
+.body {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sheet[data-ready='false'] .body {
   overflow: hidden;
 }
 
@@ -40,10 +51,9 @@
   }
 }
 
-/* Cabeçalho escuro, fixo no topo do cartão. Ao rolar, recolhe título e frase. */
+/* Cabeçalho escuro no topo do cartão. Ao rolar, recolhe título e frase. */
 .head {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 5;
   flex: none;
   display: grid;
@@ -94,11 +104,32 @@
 }
 
 .title {
-  margin: 18px 0 6px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.22em;
+  margin: 18px 0 8px;
   font-size: clamp(30px, 3.6vw, 52px);
   font-weight: 500;
   line-height: 1;
   letter-spacing: -0.035em;
+}
+
+/* Lettering misturado: expandida, assinatura e comprimida. */
+.tWide {
+  font-size: 0.78em;
+  font-weight: 300;
+}
+
+.tSign {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.05em;
+  line-height: 0.8;
+}
+
+.tCond {
+  font-size: 1.12em;
+  line-height: 0.86;
 }
 
 .lead {
@@ -274,7 +305,7 @@
 
 .sectionHead {
   position: sticky;
-  top: 150px;
+  top: 24px;
   align-self: start;
   display: grid;
   gap: 6px;

@@ -42,7 +42,6 @@ export const announcement = 'Agenda aberta · orçamento pelo WhatsApp';
 export const sequence = {
   step1: ['Sua história', 'ainda guardada'],
   hint: 'Role para conhecer',
-  step2: 'O início de um novo traço…',
   eyebrow: 'Seja bem-vindo ao studio.',
   title: ['Prazer,', 'Yuri Galvão.'],
   subtitle: 'Tatuador de Fine Line e Black & Grey em Taubaté. Cada arte é criada exclusivamente pra você.',

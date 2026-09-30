@@ -1,9 +1,8 @@
 /* Linha do tempo (data-phase="play"), só com transform, opacity, filter e clip-path:
    0.0s  frase e aspas do passo 1
-   0.7s  frase se desfaz, aspas se afastam
-   0.9s  painel preto desce até 30% (passo 2) e "O início de um novo traço…" aparece
-   2.2s  painel continua até a altura da apresentação
-   2.75s apresentação do Yuri entra em cascata
+   0.35s frase se desfaz, aspas se afastam
+   0.45s painel preto desce direto até a altura da apresentação, já com o vídeo
+   1.0s  apresentação do Yuri entra em cascata
    idle = passo 1 parado (durante a abertura); done = estado final, sem animação. */
 .hero {
   --pmax: clamp(280px, 44vh, 440px);
@@ -29,9 +28,45 @@
 .panelBg {
   position: absolute;
   inset: 0;
+  overflow: hidden;
   background: var(--ink);
   clip-path: inset(0 0 100% 0);
   will-change: clip-path;
+}
+
+/* Vídeo no canto direito; o degradê mantém a área do texto escura e vai revelando o vídeo. */
+.video {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 66%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  opacity: 0;
+  transition: opacity 1.2s var(--ease);
+}
+
+.video[data-ready='true'] {
+  opacity: 0.85;
+}
+
+.panelBg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      var(--ink) 0%,
+      var(--ink) 34%,
+      rgba(21, 21, 21, 0.82) 48%,
+      rgba(21, 21, 21, 0.35) 68%,
+      rgba(21, 21, 21, 0.1) 86%,
+      rgba(21, 21, 21, 0.3) 100%
+    ),
+    linear-gradient(0deg, rgba(21, 21, 21, 0.55) 0%, transparent 35%);
+  pointer-events: none;
 }
 
 .welcome {
@@ -217,7 +252,7 @@
   bottom: 10px;
 }
 
-/* Passos 1 e 2: camada do tamanho da tela, por cima do branco e por baixo do painel. */
+/* Passo 1: camada do tamanho da tela, por cima do branco e por baixo do painel. */
 .stage {
   position: absolute;
   inset: 0 0 auto;
@@ -264,19 +299,6 @@
   will-change: transform, opacity, filter;
 }
 
-.step2 {
-  position: absolute;
-  top: calc(30vh + 22px);
-  left: 0;
-  right: 0;
-  margin: 0;
-  font-size: clamp(16px, 1.8vw, 24px);
-  font-weight: 600;
-  text-align: center;
-  text-transform: uppercase;
-  opacity: 0;
-}
-
 .hint {
   position: absolute;
   left: 50%;
@@ -306,25 +328,20 @@
 
 /* ---------- play: a sequência ---------- */
 .hero[data-phase='play'] .panelBg {
-  animation: panel 2.4s 0.9s both;
+  animation: panel 1s var(--ease-io) 0.45s both;
 }
 
 @keyframes panel {
-  0% {
+  from {
     clip-path: inset(0 0 100% 0);
-    animation-timing-function: var(--ease-out);
   }
-  36% {
-    clip-path: inset(0 0 calc(100% - 30vh) 0);
-    animation-timing-function: cubic-bezier(0.5, 0, 0.3, 1);
-  }
-  100% {
+  to {
     clip-path: inset(0 0 0 0);
   }
 }
 
 .hero[data-phase='play'] .step1 {
-  animation: step1Out 0.9s var(--ease-io) 0.7s both;
+  animation: step1Out 0.6s var(--ease-io) 0.35s both;
 }
 
 @keyframes step1Out {
@@ -336,11 +353,11 @@
 }
 
 .hero[data-phase='play'] .open {
-  animation: openDrift 2.5s var(--ease-io) 0.7s both;
+  animation: openDrift 1.2s var(--ease-io) 0.35s both;
 }
 
 .hero[data-phase='play'] .close {
-  animation: closeDrift 2.5s var(--ease-io) 0.7s both;
+  animation: closeDrift 1.2s var(--ease-io) 0.35s both;
 }
 
 @keyframes openDrift {
@@ -363,32 +380,12 @@
   }
 }
 
-.hero[data-phase='play'] .step2 {
-  animation: step2 1.6s var(--ease-io) 1.25s both;
-}
-
-@keyframes step2 {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  30%,
-  60% {
-    opacity: 1;
-    transform: none;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-14px);
-  }
-}
-
 .hero[data-phase='play'] .hint {
-  animation: fadeOut 0.5s var(--ease-io) 0.6s both;
+  animation: fadeOut 0.4s var(--ease-io) 0.2s both;
 }
 
 .hero[data-phase='play'] .stage {
-  animation: fadeOut 0.4s linear 3.3s both;
+  animation: fadeOut 0.3s linear 1.3s both;
 }
 
 @keyframes fadeOut {
@@ -407,18 +404,18 @@
   animation: rise 1.1s var(--ease-out) both;
 }
 
-.hero[data-phase='play'] .welcome > :nth-child(1) { animation-delay: 2.7s; }
-.hero[data-phase='play'] .welcome > :nth-child(2) { animation-delay: 2.8s; }
-.hero[data-phase='play'] .welcome > :nth-child(3) { animation-delay: 2.92s; }
-.hero[data-phase='play'] .pill { animation-delay: 3.05s; }
-.hero[data-phase='play'] .photo { animation-delay: 2.95s; }
-.hero[data-phase='play'] .cornerOpen { animation-delay: 3.05s; }
-.hero[data-phase='play'] .copy > :nth-child(1) { animation-delay: 3.02s; }
-.hero[data-phase='play'] .copy > :nth-child(2) { animation-delay: 3.1s; }
-.hero[data-phase='play'] .copy > :nth-child(3) { animation-delay: 3.18s; }
-.hero[data-phase='play'] .copy > :nth-child(4) { animation-delay: 3.26s; }
-.hero[data-phase='play'] .copy > :nth-child(5) { animation-delay: 3.34s; }
-.hero[data-phase='play'] .cornerClose { animation-delay: 3.34s; }
+.hero[data-phase='play'] .welcome > :nth-child(1) { animation-delay: 1s; }
+.hero[data-phase='play'] .welcome > :nth-child(2) { animation-delay: 1.08s; }
+.hero[data-phase='play'] .welcome > :nth-child(3) { animation-delay: 1.18s; }
+.hero[data-phase='play'] .pill { animation-delay: 1.3s; }
+.hero[data-phase='play'] .photo { animation-delay: 1.2s; }
+.hero[data-phase='play'] .cornerOpen { animation-delay: 1.3s; }
+.hero[data-phase='play'] .copy > :nth-child(1) { animation-delay: 1.26s; }
+.hero[data-phase='play'] .copy > :nth-child(2) { animation-delay: 1.33s; }
+.hero[data-phase='play'] .copy > :nth-child(3) { animation-delay: 1.4s; }
+.hero[data-phase='play'] .copy > :nth-child(4) { animation-delay: 1.47s; }
+.hero[data-phase='play'] .copy > :nth-child(5) { animation-delay: 1.54s; }
+.hero[data-phase='play'] .cornerClose { animation-delay: 1.54s; }
 
 @keyframes rise {
   from {
@@ -486,6 +483,23 @@
 
   .frame img {
     aspect-ratio: 5 / 4;
+  }
+}
+
+@media (max-width: 760px) {
+  /* No celular o vídeo ocupa o painel todo e escurece de cima para baixo, onde fica o texto. */
+  .video {
+    width: 100%;
+  }
+
+  .panelBg::after {
+    background: linear-gradient(
+      0deg,
+      var(--ink) 0%,
+      rgba(21, 21, 21, 0.9) 42%,
+      rgba(21, 21, 21, 0.45) 72%,
+      rgba(21, 21, 21, 0.2) 100%
+    );
   }
 }
 
